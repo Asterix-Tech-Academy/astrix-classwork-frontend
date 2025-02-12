@@ -1,0 +1,56 @@
+.button {
+  font-family: "Sofia Sans", serif;
+
+  outline: none;
+  border: 1px #AFAFAF;
+  border-style: solid;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgb(217, 217, 217, 0.35);
+  padding: 10px 15px;
+  width: auto;
+  
+  cursor: pointer;
+
+  transition: background-color 0.1s ease;
+
+  animation: slideDownFadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  opacity: 0.5;
+}
+.button:hover {
+  background-color: rgb(217, 217, 217, 0.5);
+}
+
+.button.active {
+  box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.1);
+  background-color: rgba(217, 217, 217, 0.85);
+}
+.button.active:hover {
+  background-color: rgb(217, 217, 217, 0.85);
+}
+
+.button svg {
+  opacity: 65%;
+  width: 21px;
+  height: 21px;
+
+  transition: opacity 0.15s ease;
+}
+.button.active svg {
+  opacity: 100%;
+}
+
+@keyframes slideDownFadeIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

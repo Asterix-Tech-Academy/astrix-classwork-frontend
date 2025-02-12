@@ -1,0 +1,26 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 275px 1fr;
+  gap: 5px;
+  min-height: 98vh;
+}
+
+.sidebar {
+  grid-column: 1;
+  padding: 5px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 0.45fr 1fr;
+  gap: 15px;
+  padding: 5px;
+}
+
+.content-left {
+  grid-column: 1;
+}
+
+.content-right {
+  grid-column: 2;
+}

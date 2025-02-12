@@ -1,0 +1,63 @@
+#classrooms-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  margin-top: 30px;
+  gap: 10px;
+}
+
+#classrooms-buttons .button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  border: none;
+
+  padding: 5px 2px;
+  background-color: transparent;
+  font-size: 16px;
+
+  width: 100%;
+  margin-bottom: 5px;
+}
+#classrooms-buttons .button.active {
+  padding: 5px 2px;
+  background-color: rgba(217, 217, 217, 0.85);
+}
+
+#classrooms-buttons .button img {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  transition: margin 0.15s ease;
+}
+#classrooms-buttons .button.active img {
+  margin-left: 5px;
+}
+
+#classrooms-buttons {
+  width: 100%;
+}
+
+.classroom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+}
+
+.notifyIndicator.active {
+  background-color: #E45959;
+}
+
+.notifyIndicator {
+  background-color: transparent;
+  border-radius: 50%;
+
+  margin-right: 5px;
+  width: 7px;
+  height: 7px;
+}

@@ -1,0 +1,57 @@
+#assignments {
+  padding: 10px;
+}
+#assignments .button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 10px 15px;
+
+  font-size: 18px;
+  font-weight: 500;
+  
+  background-color: transparent;
+}
+
+#assignments .button:hover {
+  background-color: rgba(199, 199, 199, 0.85);
+}
+
+#assignments .button:not(.active) {
+  border: none;
+}
+
+#assignments .button.active {
+  padding: 15px 15px;
+}
+
+#assignments-header {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+#assignments-header .smallText {
+  transform: translateY(5px);
+}
+
+#not-submitted {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.horizontal-layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.assignments-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.35rem;
+}

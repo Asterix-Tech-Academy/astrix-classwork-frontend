@@ -1,0 +1,21 @@
+#navmenu {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+#navmenu .button {
+  width: 100%;
+  height: 50px;
+
+  animation: none;
+  border: none;
+}
+
+#navmenu .button svg {
+  transition: transform 0.15s ease;
+}
+#navmenu .button.active svg {
+  transform: translateY(-2px);
+}
