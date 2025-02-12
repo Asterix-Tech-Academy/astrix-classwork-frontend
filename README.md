@@ -1,12 +1,12 @@
 # astrix-classwork
  
-Clone the repo
-Run:
+1. Clone the repo
+2. To install all node modules, run:
 ```
 npm install
 ```
 
-Then run:
+3. To start the project on locahost, run:
 ```
 npm run dev
 ```
