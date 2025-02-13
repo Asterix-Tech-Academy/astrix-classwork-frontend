@@ -1,4 +1,4 @@
-#assignments {
+#assignments, #assignment-details {
   padding: 10px;
 }
 #assignments .button {
@@ -12,6 +12,8 @@
   font-weight: 500;
   
   background-color: transparent;
+
+  transition: padding 0.1s ease;
 }
 
 #assignments .button:hover {
@@ -33,7 +35,9 @@
 }
 
 #assignments-header .smallText {
-  transform: translateY(5px);
+  font-size: 18px;
+  color: hsla(0, 0%, 0%, .65);
+  transform: translateY(0.22rem);
 }
 
 #not-submitted {
@@ -54,4 +58,30 @@
   flex-direction: column;
   width: 100%;
   gap: 0.35rem;
+}
+
+p {
+  font-size: 20px;
+}
+
+#assignment-details .horizontal-line {
+  margin: 20px 0;
+  width: 10rem;
+}
+
+#myWork .button {
+  padding: 12px 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  background-color: #D9D9D9;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#myWork .button svg {
+  width: 18px;
+  height: 18px;
+  opacity: 1;
+  transform: translateY(2px);
+  margin-left: 5px;
 }

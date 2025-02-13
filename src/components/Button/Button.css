@@ -11,12 +11,15 @@
   justify-content: center;
 
   background-color: rgb(217, 217, 217, 0.35);
+
   padding: 10px 15px;
   width: auto;
   
   cursor: pointer;
 
   transition: background-color 0.1s ease;
+
+  white-space: nowrap;
 
   animation: slideDownFadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
   opacity: 0.5;

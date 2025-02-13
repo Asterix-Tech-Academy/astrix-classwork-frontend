@@ -9,7 +9,7 @@ function ProfilePanel() {
   return (
     <div id="profile" className="panel">
       <div id='profile-panel-left'>
-        <img src={profilePicture} alt={name + "'s profile"} />
+        <img src={pic} alt={name + "'s profile"} />
         <p>{name}</p>
       </div>
       <div id='profile-panel-right'>

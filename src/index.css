@@ -34,6 +34,12 @@ p.smallText {
 
 .vertical-line {
   width: 0.075rem;
-  background-color: rgb(182, 180, 174, 0.5);
   height: auto;
+  background-color: rgb(182, 180, 174, 0.5);
+}
+
+.horizontal-line {
+  width: auto;
+  height: 0.1rem;
+  background-color: rgb(182, 180, 174, 0.5);
 }
