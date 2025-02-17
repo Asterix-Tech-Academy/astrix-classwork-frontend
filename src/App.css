@@ -53,7 +53,7 @@
   .content {
     display: flex;
     position: fixed;
-    width: 200%; /* Double width to accommodate both panels */
+    width: 200%; 
     height: 100vh;
     top: 0;
     left: 0;
@@ -64,7 +64,7 @@
 
   .content-left, 
   .content-right {
-    width: 50%; /* Each panel takes half of the content width */
+    width: 50%; 
     min-width: 80vw;
     height: 100%;
     transition: transform 0.3s ease;
@@ -75,7 +75,6 @@
     transform: translateX(0);
   }
 
-  /* States for mobile navigation */
   .mobile-content-visible .sidebar {
     transform: translateX(-100%);
   }
@@ -84,7 +83,6 @@
     transform: translateX(0);
   }
 
-  /* Add new class for when assignment is selected */
   .assignment-selected .content-left {
     transform: translateX(-100%);
   }

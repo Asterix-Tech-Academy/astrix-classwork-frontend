@@ -106,7 +106,14 @@ function App() {
             </>
           )}
           {activeTab === 'grades' && (
-            <Grades selectedClassroom={selectedClassroom} />
+            <>
+              {isMobileContentVisible && (
+                <button className="back-button" onClick={handleBackClick}>
+                  ← Назад към класни стаи
+                </button>
+              )}
+              <Grades selectedClassroom={selectedClassroom} />
+            </>
           )}
           {activeTab === 'settings' && (
             <Settings selectedSetting={selectedSetting} />
