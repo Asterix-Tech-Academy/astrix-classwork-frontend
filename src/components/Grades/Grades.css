@@ -1,0 +1,92 @@
+#grades,
+#grades-header {
+  padding: 7px;
+}
+
+#grades .noGrades {
+  transform: translateY(-15px);
+  margin-left: 10px;
+}
+
+.horizontal-layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+#grades .button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 15px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  transition: padding 0.1s ease;
+}
+
+#grades .button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+#grades-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+}
+
+#grades-list .button {
+  cursor: default;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: 5.5rem 2rem 1fr; /* Updated grid-template-columns */
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.grade > span {
+  text-align: left;
+}
+
+.grade #gradeValue {
+  padding: 2px 6px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.grade #otherInfo {
+  margin-left: 5rem;
+  opacity: 45%;
+  text-align: right;
+  justify-self: end;
+}
+
+.grade #otherInfo .teacher {
+  margin-left: 5rem;
+  align-items: center;
+}
+
+
+.green {
+  background-color: rgb(101, 203, 101);
+}
+
+.blue {
+  background-color: rgb(101, 166, 203);
+}
+
+.yellow {
+  background-color: rgb(198, 203, 101);
+}
+
+.orange {
+  background-color: rgb(203, 137, 101);
+}
+
+.red {
+  background-color: rgb(203, 101, 101);
+}

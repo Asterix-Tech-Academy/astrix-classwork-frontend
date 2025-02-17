@@ -1,11 +1,15 @@
+:root {
+  --body-background-color: #92a9c8;
+}
+
 body {
-  background-color: #CAC4A2;
+  background-color: var(--body-background-color);
   overflow: hidden;
   font-family: "Sofia Sans", serif;
 }
 
 .panel {
-  background-color: hsla(0, 0%, 85%, 0.85);
+  background-color: rgba(255, 255, 255, 0.43);
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;

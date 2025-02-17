@@ -1,0 +1,87 @@
+#settings,
+#settings-header {
+  padding: 7px;
+}
+
+.horizontal-layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+#settings-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  margin-top: 15px;
+  gap: 10px;
+}
+
+#setting-buttons .button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  border: none;
+
+  padding: 5px 2px;
+  background-color: transparent;
+  font-size: 16px;
+
+  width: 100%;
+  margin-bottom: 5px;
+}
+#setting-buttons .button.active {
+  background-color: rgba(217, 217, 217, 0.85);
+}
+
+#setting-buttons {
+  width: 100%;
+}
+
+.setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  padding-left: 10px;
+}
+
+#theme-setting {
+  margin-left: 5px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+#theme-setting button {
+  padding: 20px 20px;
+  outline: none;
+  border: 1px #AFAFAF;
+  border-style: solid;
+  border-radius: 12px;
+}
+
+#blue-theme {
+  background-color: #92a9c8;
+}
+#purple-theme {
+  background-color: #a192c8;
+}
+#yellow-theme {
+  background-color: #c4caa2;
+}
+#orange-theme {
+  background-color: #c8b692;
+}
+#red-theme {
+  background-color: #c57474;
+}
+#pink-theme {
+  background-color: #c5749f;
+}

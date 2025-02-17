@@ -9,10 +9,21 @@ function ClassroomsPanel({ setSelectedClassroom }) {
     { id: 0, content: <div className='classroom'><div><img src='https://fakeimg.pl/20x20?text=EN'/> Английски език</div> <div className='notifyIndicator active'></div></div>, 
       title: "Английски език", 
       assignments: [
-      { id: 0, title: 'Домашна работа - 11.02', description: "123", dueDate: "23.03, 10:30", maxPoints: "100", userPoints: ""},
-      { id: 1, title: 'Есе на тема “Как научих англиasdasdasdasdasdsadasFasfg artaegйск...' },
-      { id: 2, title:  'Презентация на тема “Какво...'},
-    ]},
+        { id: 0, title: 'Домашна работа - 11.02', description: "123", dueDate: "23.03, 10:30", maxPoints: "100", userPoints: ""},
+        { id: 1, title: 'Есе на тема “Как научих англиasdasdasdasdasdsadasFasfg artaegйск...' },
+        { id: 2, title:  'Презентация на тема “Какво...'},
+      ],
+      grades: [
+        {id: 0, grade:6, onDate: "15.02.2025", teacher: "Пенка Пенкова"},
+        {id: 1, grade:6, onDate: "13.02.2025", teacher: "Иванчо Иванчов"},
+        {id: 2, grade:5, onDate: "07.02.2025", teacher: "Пенчо Пенчов"},
+        {id: 3, grade:3, onDate: "01.02.2025", teacher: "Йово Михов"},
+        {id: 4, grade:2, onDate: "31.01.2025", teacher: "Света Пенчева"},
+        {id: 5, grade:2, onDate: "8.01.2025"},
+        {id: 6, grade:4, onDate: "4.01.2025"},  
+      ]
+  },
+    
     { id: 1, content: <div className='classroom'><div><img src='https://fakeimg.pl/20x20?text=EN'/> Немски език</div> <div className='notifyIndicator active'></div></div>, 
       title: "Немски език", 
       assignments: [
