@@ -18,7 +18,11 @@ function App() {
   };
 
   const handleBackClick = () => {
-    setIsMobileContentVisible(false);
+    if (selectedAssignment) {
+      setSelectedAssignment(null);
+    } else {
+      setIsMobileContentVisible(false);
+    }
   };
 
   const renderSidebarContent = () => {
@@ -35,7 +39,7 @@ function App() {
   };
 
   return (
-    <div className={`dashboard ${isMobileContentVisible ? 'mobile-content-visible' : ''}`}>
+    <div className={`dashboard ${isMobileContentVisible ? 'mobile-content-visible' : ''} ${selectedAssignment ? 'assignment-selected' : ''}`}>
       <aside className="sidebar">
         <div>
           <ProfilePanel
@@ -52,9 +56,9 @@ function App() {
 
       <main className="content">
         <section className="content-left panel">
-          {isMobileContentVisible && (
+          {isMobileContentVisible && !selectedAssignment && (
             <button className="back-button" onClick={handleBackClick}>
-              ← Назад
+              ← Назад към класни стаи
             </button>
           )}
           <Assignments 
@@ -64,6 +68,11 @@ function App() {
         </section>
 
         <section className="content-right panel">
+          {selectedAssignment && (
+            <button className="back-button" onClick={handleBackClick}>
+              ← Назад към задания
+            </button>
+          )}
           <AssignmentDetails assignment={selectedAssignment} />
         </section>
       </main>

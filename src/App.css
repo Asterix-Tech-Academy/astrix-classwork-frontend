@@ -51,10 +51,9 @@
   }
 
   .content {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
     position: fixed;
-    width: 100%;
+    width: 200%; /* Double width to accommodate both panels */
     height: 100vh;
     top: 0;
     left: 0;
@@ -63,8 +62,17 @@
     z-index: 1;
   }
 
+  .content-left, 
   .content-right {
-    display: none;
+    width: 50%; /* Each panel takes half of the content width */
+    min-width: 80vw;
+    height: 100%;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .content-right {
+    transform: translateX(0);
   }
 
   /* States for mobile navigation */
@@ -74,6 +82,15 @@
 
   .mobile-content-visible .content {
     transform: translateX(0);
+  }
+
+  /* Add new class for when assignment is selected */
+  .assignment-selected .content-left {
+    transform: translateX(-100%);
+  }
+
+  .assignment-selected .content {
+    transform: translateX(-50.5%);
   }
 
   .back-button {
