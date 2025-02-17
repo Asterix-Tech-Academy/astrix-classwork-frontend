@@ -45,7 +45,7 @@ function NavMenu({activeButton, setActiveButton}) {
         animationData={tasksAnimation}
         loop={false}
         autoplay={false}
-        style={{ width: 35, height: 35 }}
+        style={{ width: 30, height: 29.5 }}
         initialSegment={[0, 70]}
       />
     },
@@ -56,7 +56,7 @@ function NavMenu({activeButton, setActiveButton}) {
         animationData={gradesAnimation}
         loop={false}
         autoplay={false}
-        style={{ width: 35, height: 35 }}
+        style={{ width: 30, height: 30 }}
         initialSegment={[0, 70]}
       />
     },
@@ -67,7 +67,7 @@ function NavMenu({activeButton, setActiveButton}) {
         animationData={menuAnimation}
         loop={false}
         autoplay={false}
-        style={{ width: 40, height: 40 }}
+        style={{ width: 35, height: 35 }}
         initialSegment={[0, 50]}
       /> 
     },
