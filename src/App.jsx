@@ -21,10 +21,6 @@ function App() {
     setIsMobileContentVisible(false);
   };
 
-  const handleAssignmentSelect = (assignment) => {
-    setSelectedAssignment(assignment);
-  };
-
   const renderSidebarContent = () => {
     switch (activeTab) {
       case 'tasks':
@@ -39,7 +35,7 @@ function App() {
   };
 
   return (
-    <div className={`dashboard ${isMobileContentVisible ? 'mobile-content-visible' : ''} ${selectedAssignment ? 'assignment-visible' : ''}`}>
+    <div className={`dashboard ${isMobileContentVisible ? 'mobile-content-visible' : ''}`}>
       <aside className="sidebar">
         <div>
           <ProfilePanel
@@ -63,16 +59,11 @@ function App() {
           )}
           <Assignments 
             selectedClassroom={selectedClassroom || "Няма избрана класна стая"}
-            setSelectedAssignment={handleAssignmentSelect}
+            setSelectedAssignment={setSelectedAssignment}
           />
         </section>
 
         <section className="content-right panel">
-          {selectedAssignment && isMobileContentVisible && (
-            <button className="back-button" onClick={() => setSelectedAssignment(null)}>
-              ← Назад
-            </button>
-          )}
           <AssignmentDetails assignment={selectedAssignment} />
         </section>
       </main>
