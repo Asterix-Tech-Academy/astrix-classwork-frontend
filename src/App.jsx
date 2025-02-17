@@ -10,13 +10,27 @@ function App() {
   const [activeTab, setActiveTab] = useState('tasks');
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [selectedClassroom, setSelectedClassroom] = useState(null);
+  const [isMobileContentVisible, setIsMobileContentVisible] = useState(false);
+
+  const handleClassroomSelect = (classroom) => {
+    setSelectedClassroom(classroom);
+    setIsMobileContentVisible(true);
+  };
+
+  const handleBackClick = () => {
+    setIsMobileContentVisible(false);
+  };
+
+  const handleAssignmentSelect = (assignment) => {
+    setSelectedAssignment(assignment);
+  };
 
   const renderSidebarContent = () => {
     switch (activeTab) {
       case 'tasks':
-        return <ClassroomsPanel setSelectedClassroom={setSelectedClassroom} />;
+        return <ClassroomsPanel setSelectedClassroom={handleClassroomSelect} />;
       case 'grades':
-        return <ClassroomsPanel setSelectedClassroom={setSelectedClassroom} />;
+        return <ClassroomsPanel setSelectedClassroom={handleClassroomSelect} />;
       case 'settings':
         return <p>Settings Panel</p>;
       default:
@@ -25,7 +39,7 @@ function App() {
   };
 
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${isMobileContentVisible ? 'mobile-content-visible' : ''} ${selectedAssignment ? 'assignment-visible' : ''}`}>
       <aside className="sidebar">
         <div>
           <ProfilePanel
@@ -42,13 +56,23 @@ function App() {
 
       <main className="content">
         <section className="content-left panel">
+          {isMobileContentVisible && (
+            <button className="back-button" onClick={handleBackClick}>
+              ← Назад
+            </button>
+          )}
           <Assignments 
             selectedClassroom={selectedClassroom || "Няма избрана класна стая"}
-            setSelectedAssignment={setSelectedAssignment}
+            setSelectedAssignment={handleAssignmentSelect}
           />
         </section>
 
         <section className="content-right panel">
+          {selectedAssignment && isMobileContentVisible && (
+            <button className="back-button" onClick={() => setSelectedAssignment(null)}>
+              ← Назад
+            </button>
+          )}
           <AssignmentDetails assignment={selectedAssignment} />
         </section>
       </main>

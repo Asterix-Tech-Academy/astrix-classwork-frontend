@@ -30,11 +30,13 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
   }, [assignments]);
 
   const updateTruncateAssignments = (assignments) => {
+    const truncateLength = window.innerWidth <= 768 ? "9cnt" : "2.2cnt";
+    
     const updatedAssignments = assignments.map(ass => ({
       ...ass,
-      truncTitle: truncateString(ass.title, "2.2cnt"), // Create a new property for truncated title
+      truncTitle: truncateString(ass.title, truncateLength),
     }));
-    setTruncatedAssignments(updatedAssignments); // Update state with new assignments
+    setTruncatedAssignments(updatedAssignments);
   };
 
   const handleClick = (id) => {
