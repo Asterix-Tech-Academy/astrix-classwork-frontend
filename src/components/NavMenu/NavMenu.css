@@ -8,14 +8,88 @@
 #navmenu .button {
   width: 100%;
   height: 50px;
-
-  animation: none;
+  position: relative;
   border: none;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#navmenu .button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#navmenu .button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#navmenu .button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#navmenu .button:hover::before {
+  transform: translate(-50%, -50%) scale(1.5);
+  opacity: 0.1;
 }
 
 #navmenu .button svg {
-  transition: transform 0.15s ease;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  stroke-width: 1.5;
+  fill: none;
+  stroke: currentColor;
 }
+
+#navmenu .button:hover svg {
+  transform: scale(1.1) rotate(2deg);
+  stroke-width: 2;
+}
+
+#navmenu .button.active {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+}
+
 #navmenu .button.active svg {
-  transform: translateY(-2px);
+  transform: scale(1.15);
+  stroke-width: 2.5;
+  fill: rgba(255, 255, 255, 0.1);
+}
+
+#navmenu .button:active svg {
+  transform: scale(0.95);
+}
+
+#navmenu .button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.3s ease-out;
+}
+
+#navmenu .button:active::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  transition: 0s;
 }

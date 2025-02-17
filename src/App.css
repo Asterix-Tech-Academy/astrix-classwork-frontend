@@ -24,3 +24,84 @@
 .content-right {
   grid-column: 2;
 }
+
+.back-button {
+  display: none;
+}
+
+/* Mobile layout */
+@media screen and (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+  }
+
+  .sidebar {
+    grid-column: 1;
+    width: 98%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+    z-index: 2;
+    transform: translateX(0);
+  }
+
+  .content {
+    display: flex;
+    position: fixed;
+    width: 200%; /* Double width to accommodate both panels */
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1;
+  }
+
+  .content-left, 
+  .content-right {
+    width: 50%; /* Each panel takes half of the content width */
+    min-width: 80vw;
+    height: 100%;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .content-right {
+    transform: translateX(0);
+  }
+
+  /* States for mobile navigation */
+  .mobile-content-visible .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .mobile-content-visible .content {
+    transform: translateX(0);
+  }
+
+  /* Add new class for when assignment is selected */
+  .assignment-selected .content-left {
+    transform: translateX(-100%);
+  }
+
+  .assignment-selected .content {
+    transform: translateX(-50.5%);
+  }
+
+  .back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+}

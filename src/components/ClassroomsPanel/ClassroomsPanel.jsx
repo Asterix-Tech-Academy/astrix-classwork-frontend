@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '../Button/Button';
 import './ClassroomsPanel.css';
 
-function ClassroomsPanel({ setSelectedClassroom }) {
+function ClassroomsPanel({ setSelectedClassroom, selectedClassroom }) {
   const [activeClassroom, setActiveClassroom] = useState(null);
 
   const classrooms = [
@@ -33,26 +33,25 @@ function ClassroomsPanel({ setSelectedClassroom }) {
   ];
 
   useEffect(() => {
-    if (classrooms && classrooms.length > 0) {
-      setActiveClassroom(classrooms[0]); 
-      setSelectedClassroom(classrooms[0]);
+    if (selectedClassroom) {
+      setActiveClassroom(selectedClassroom);
     }
-  }, [setSelectedClassroom]);
+  }, [selectedClassroom]);
 
   const handleClick = (classroom) => {
     setActiveClassroom(classroom);
-    setSelectedClassroom(classroom); 
+    setSelectedClassroom(classroom);
   };
 
   return (
     <div id="classrooms-panel">
       <h2>Класни Стаи</h2>
       <div id="classrooms-buttons">
-        {classrooms && classrooms.map((classroom) => (
+        {classrooms.map((classroom) => (
           <Button
             key={classroom.id}
             content={classroom.content}
-            active={activeClassroom && activeClassroom.id === classroom.id} 
+            active={activeClassroom && activeClassroom.id === classroom.id}
             onClick={() => handleClick(classroom)}
           />
         ))}
