@@ -54,15 +54,14 @@ function Grades({ selectedClassroom }) {
                 key={id}
                 content={
                   <div className="grade">
-                    <span>{longName}</span>
+                    <span className="grade-name">{longName}</span>
                     <div id="gradeValue" className={color}>
                       {grade}
                     </div>
                     <div id="otherInfo">
-                    {onDate || "~"} 
-                    <span className="teacher">{teacher}</span>
-                  </div>
-
+                      <span className="date">{onDate || "~"}</span>
+                      <span className="teacher">{teacher}</span>
+                    </div>
                   </div>
                 }
               />

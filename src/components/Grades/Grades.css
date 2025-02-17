@@ -1,6 +1,7 @@
 #grades,
 #grades-header {
   padding: 7px;
+  padding-right: 7px; /* Added explicit right padding */
 }
 
 #grades .noGrades {
@@ -43,7 +44,7 @@
 
 .grade {
   display: grid;
-  grid-template-columns: 5.5rem 2rem 1fr; /* Updated grid-template-columns */
+  grid-template-columns: 5.5rem 2rem 1fr; 
   align-items: center;
   gap: 0.5rem;
 }
@@ -89,4 +90,53 @@
 
 .red {
   background-color: rgb(203, 101, 101);
+}
+
+
+@media screen and (max-width: 768px) {
+  .grade {
+    grid-template-columns: auto auto 1fr;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .grade .grade-name {
+    display: none;
+  }
+
+  .grade #gradeValue {
+    padding: 2px 8px;
+    font-size: 16px;
+    min-width: 24px;
+  }
+
+  .grade #otherInfo {
+    margin-left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .grade #otherInfo .teacher {
+    margin-left: 0;
+    order: -1;
+    margin-right: auto;
+  }
+
+  .grade #otherInfo .date {
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+
+  #grades .button {
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+
+  #grades,
+  #grades-header {
+    padding: 7px;
+    padding-right: 8%;
+  }
 }

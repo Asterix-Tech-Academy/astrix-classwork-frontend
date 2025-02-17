@@ -1,4 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
+import Lottie from 'lottie-react';
+import backAnimation from './back.json';
 import './App.css';
 import ClassroomsPanel from './components/ClassroomsPanel/ClassroomsPanel';
 import NavMenu from './components/NavMenu/NavMenu';
@@ -8,6 +10,34 @@ import AssignmentDetails from './components/Assignments/AssignmentDetails';
 import Grades from './components/Grades/Grades';
 import SettingsPanel from './components/Settings/SettingsPanel';
 import Settings from './components/Settings/Settings';
+
+const BackButton = ({ onClick, text }) => {
+  const backRef = useRef();
+
+  const handleClick = () => {
+    backRef.current?.stop();
+    backRef.current?.play();
+    
+    // Wait for animation to reach halfway before executing the callback
+    setTimeout(() => {
+      onClick();
+    }, 500); // Animation is 25 frames at 25fps, so halfway point is at 500ms
+  };
+
+  return (
+    <button className="back-button" onClick={handleClick}>
+      <Lottie 
+        lottieRef={backRef}
+        animationData={backAnimation}
+        loop={false}
+        autoplay={false}
+        style={{ width: 80, height: 80, padding: -50 }}
+        initialSegment={[0, 25]}
+      />
+      {text}
+    </button>
+  );
+};
 
 function App() {
   const [activeTab, setActiveTab] = useState('tasks');
@@ -75,9 +105,7 @@ function App() {
           style={{ display: activeTab === 'tasks' ? 'block' : 'none' }}
         >
           {isMobileContentVisible && !selectedAssignment && (
-            <button className="back-button" onClick={handleBackClick}>
-              ← Назад към класни стаи
-            </button>
+            <BackButton onClick={handleBackClick} text="Назад към класни стаи" />
           )}
           {activeTab === 'tasks' && (
             <Assignments
@@ -98,9 +126,7 @@ function App() {
           {activeTab === 'tasks' && (
             <>
               {selectedAssignment && (
-                <button className="back-button" onClick={handleBackClick}>
-                  ← Назад към задания
-                </button>
+                <BackButton onClick={handleBackClick} text="Назад към задания" />
               )}
               <AssignmentDetails assignment={selectedAssignment} />
             </>
@@ -108,9 +134,7 @@ function App() {
           {activeTab === 'grades' && (
             <>
               {isMobileContentVisible && (
-                <button className="back-button" onClick={handleBackClick}>
-                  ← Назад към класни стаи
-                </button>
+                <BackButton onClick={handleBackClick} text="Назад към класни стаи" />
               )}
               <Grades selectedClassroom={selectedClassroom} />
             </>
