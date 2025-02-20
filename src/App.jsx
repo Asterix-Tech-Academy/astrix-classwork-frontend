@@ -17,11 +17,9 @@ const BackButton = ({ onClick, text }) => {
   const handleClick = () => {
     backRef.current?.stop();
     backRef.current?.play();
-    
-    // Wait for animation to reach halfway before executing the callback
     setTimeout(() => {
       onClick();
-    }, 500); // Animation is 25 frames at 25fps, so halfway point is at 500ms
+    }, 500);
   };
 
   return (
