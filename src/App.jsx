@@ -10,6 +10,8 @@ import AssignmentDetails from './components/Assignments/AssignmentDetails';
 import Grades from './components/Grades/Grades';
 import SettingsPanel from './components/Settings/SettingsPanel';
 import Settings from './components/Settings/Settings';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AdminDashboard from './components/Admin/AdminDashboard';
 
 const BackButton = ({ onClick, text }) => {
   const backRef = useRef();
@@ -78,71 +80,78 @@ function App() {
   };
 
   return (
-    <div
-      className={`dashboard ${
-        isMobileContentVisible ? 'mobile-content-visible' : ''
-      } ${selectedAssignment ? 'assignment-selected' : ''}`}
-    >
-      <aside className="sidebar">
-        <div>
-          <ProfilePanel
-            name="Преслав Колев"
-            imageUrl="https://fakeimg.pl/32x32?text=profile"
-            type="ученик"
-          />
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <div
+            className={`dashboard ${
+              isMobileContentVisible ? 'mobile-content-visible' : ''
+            } ${selectedAssignment ? 'assignment-selected' : ''}`}
+          >
+            <aside className="sidebar">
+              <div>
+                <ProfilePanel
+                  name="Преслав Колев"
+                  imageUrl="https://fakeimg.pl/32x32?text=profile"
+                  type="ученик"
+                />
 
-          <NavMenu activeButton={activeTab} setActiveButton={setActiveTab} />
+                <NavMenu activeButton={activeTab} setActiveButton={setActiveTab} />
 
-          <div id="sidebar-content">{renderSidebarContent()}</div>
-        </div>
-      </aside>
+                <div id="sidebar-content">{renderSidebarContent()}</div>
+              </div>
+            </aside>
 
-      <main className="content">
-        <section
-          className="content-left panel"
-          style={{ display: activeTab === 'tasks' ? 'block' : 'none' }}
-        >
-          {isMobileContentVisible && !selectedAssignment && (
-            <BackButton onClick={handleBackClick} text="Назад към класни стаи" />
-          )}
-          {activeTab === 'tasks' && (
-            <Assignments
-              selectedClassroom={
-                selectedClassroom || 'Няма избрана класна стая'
-              }
-              setSelectedAssignment={setSelectedAssignmentCallback}
-            />
-          )}
-        </section>
+            <main className="content">
+              <section
+                className="content-left panel"
+                style={{ display: activeTab === 'tasks' ? 'block' : 'none' }}
+              >
+                {isMobileContentVisible && !selectedAssignment && (
+                  <BackButton onClick={handleBackClick} text="Назад към класни стаи" />
+                )}
+                {activeTab === 'tasks' && (
+                  <Assignments
+                    selectedClassroom={
+                      selectedClassroom || 'Няма избрана класна стая'
+                    }
+                    setSelectedAssignment={setSelectedAssignmentCallback}
+                  />
+                )}
+              </section>
 
-        <section
-          className="content-right panel"
-          style={{
-            gridColumn: activeTab !== 'tasks' ? '1 / span 2' : '2',
-          }}
-        >
-          {activeTab === 'tasks' && (
-            <>
-              {selectedAssignment && (
-                <BackButton onClick={handleBackClick} text="Назад към задания" />
-              )}
-              <AssignmentDetails assignment={selectedAssignment} />
-            </>
-          )}
-          {activeTab === 'grades' && (
-            <>
-              {isMobileContentVisible && (
-                <BackButton onClick={handleBackClick} text="Назад към класни стаи" />
-              )}
-              <Grades selectedClassroom={selectedClassroom} />
-            </>
-          )}
-          {activeTab === 'settings' && (
-            <Settings selectedSetting={selectedSetting} />
-          )}
-        </section>
-      </main>
-    </div>
+              <section
+                className="content-right panel"
+                style={{
+                  gridColumn: activeTab !== 'tasks' ? '1 / span 2' : '2',
+                }}
+              >
+                {activeTab === 'tasks' && (
+                  <>
+                    {selectedAssignment && (
+                      <BackButton onClick={handleBackClick} text="Назад към задания" />
+                    )}
+                    <AssignmentDetails assignment={selectedAssignment} />
+                  </>
+                )}
+                {activeTab === 'grades' && (
+                  <>
+                    {isMobileContentVisible && (
+                      <BackButton onClick={handleBackClick} text="Назад към класни стаи" />
+                    )}
+                    <Grades selectedClassroom={selectedClassroom} />
+                  </>
+                )}
+                {activeTab === 'settings' && (
+                  <Settings selectedSetting={selectedSetting} />
+                )}
+              </section>
+            </main>
+          </div>
+        } />
+        <Route path="/admin" element={<AdminDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
