@@ -150,9 +150,40 @@ p {
 
 .submission-header {
   display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.submission-top {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+}
+
+.submission-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.submission-status {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-late {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff6b6b;
+}
+
+.status-ontime {
+  background-color: rgba(0, 255, 0, 0.1);
+  color: #69db7c;
 }
 
 .points-input {
@@ -202,4 +233,11 @@ p {
 .file-item .button {
   padding: 8px 15px !important;
   font-size: 14px !important;
+}
+
+.no-files {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.5);
+  font-style: italic;
+  margin: 10px 0;
 }
