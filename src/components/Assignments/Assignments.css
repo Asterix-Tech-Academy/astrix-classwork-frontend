@@ -37,13 +37,33 @@
 
 #assignments-header {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  width: 100%;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  gap: 1rem;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.header-content h1 {
+  margin: 0;
+}
+
+.header-content .button {
+  margin: 0 !important;
 }
 
 #assignments-header .smallText {
   font-size: 18px;
   color: hsla(0, 0%, 0%, .65);
+  white-space: nowrap;
   transform: translateY(0.22rem);
 }
 
@@ -65,6 +85,29 @@
   flex-direction: column;
   width: 100%;
   gap: 0.35rem;
+  max-height: 70vh; /* Change from height: 1vh to max-height: 70vh */
+  overflow-y: auto; /* Add scrolling */
+  padding-right: 10px; /* Add padding for scrollbar */
+  scroll-behavior: smooth; /* Add smooth scrolling */
+}
+
+/* Add custom scrollbar styling for consistency */
+.assignments-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.assignments-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.assignments-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.assignments-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 p {
@@ -76,12 +119,24 @@ p {
   width: 10rem;
 }
 
+#assignment-details .button {
+  font-size: 18px;
+  margin: 0 15px;
+}
+
+#myWork {
+  display: flex;
+  justify-content: flex-start;  /* Changed from flex-end to flex-start */
+  align-items: center;
+  margin-top: 20px;
+}
+
 #myWork .button {
   padding: 12px 40px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
   font-size: 18px;
   font-weight: 600;
+  width: auto;
 }
 
 #myWork .button svg {
@@ -109,8 +164,13 @@ p {
 
 #submissions {
   margin-top: 20px;
-  max-height: 400px;
+  max-height: 100vh;
   overflow: hidden;
+}
+
+#submissions h2 {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .submissions-list {
@@ -143,9 +203,9 @@ p {
 }
 
 .submission-item {
-  padding: 15px;
+  padding: 10px 20px;
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .submission-header {
@@ -155,7 +215,12 @@ p {
   margin-bottom: 15px;
 }
 
-.submission-top {
+.submission-header h3 {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.submission-top  {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -165,38 +230,48 @@ p {
   display: flex;
   gap: 10px;
   align-items: center;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .submission-status {
-  padding: 2px 8px;
+  padding: 4px 12px;
   border-radius: 4px;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .status-late {
-  background-color: rgba(255, 0, 0, 0.1);
-  color: #ff6b6b;
+  background-color: rgba(255, 0, 0, 0.15);
+  color: #e03131;
 }
 
 .status-ontime {
-  background-color: rgba(0, 255, 0, 0.1);
-  color: #69db7c;
+  background-color: rgba(0, 255, 0, 0.15);
+  color: #2b8a3e;
 }
 
 .points-input {
   display: flex;
   align-items: center;
   gap: 5px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .points-input input {
-  width: 60px;
-  padding: 5px;
+  width: 70px;
+  padding: 8px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: white;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+}
+
+.points-input input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .attached-files {
@@ -214,13 +289,14 @@ p {
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
+  gap: 10px;
   text-align: center;
 }
 
 .file-item span {
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 8px;
   /* Ensure long filenames don't overflow */
   word-break: break-word;
@@ -232,7 +308,7 @@ p {
 
 .file-item .button {
   padding: 8px 15px !important;
-  font-size: 14px !important;
+  font-size: 18px !important;
 }
 
 .no-files {
@@ -240,4 +316,104 @@ p {
   color: rgba(0, 0, 0, 0.5);
   font-style: italic;
   margin: 10px 0;
+}
+
+.submissions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+#submissions .button {
+  padding: 8px 20px;
+  font-size: 18px;
+}
+
+.info-box {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.info-box.warning {
+  background-color: rgba(255, 193, 7, 0.15);
+  color: #ac7200;
+}
+
+.info-box.danger {
+  background-color: rgba(255, 0, 0, 0.15);
+  color: #c10000;
+}
+
+.submission-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.edit-field-group {
+  width: 97%;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.edit-field-label {
+  display: block;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.85);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.edit-field {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(0, 0, 0, 0.85);
+  transition: all 0.2s ease;
+}
+
+.edit-field:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+textarea.edit-field {
+  min-height: 60px;
+  max-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.edit-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 8px 0;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 10px;
+}
+
+#assignment-details .edit-actions .button {
+  margin: 0;
+}
+
+/* Add labels for better UX */
+.edit-field-label {
+  display: block;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.65);
+  margin-bottom: 8px;
 }

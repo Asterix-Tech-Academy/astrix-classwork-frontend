@@ -3,7 +3,7 @@ import profilePicture from '../../../public/profile.png';
 
 function ProfilePanel() {
   const name = "Преслав Колев";
-  const type = "ученик";
+  const type = getRole();
   const pic = profilePicture;
   
   return (
