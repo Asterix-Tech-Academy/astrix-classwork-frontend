@@ -5,10 +5,13 @@ import {
   calcTruncateWinWidth,
   truncateString,
 } from '../../backend/truncateString';
+import { getRole } from '../profilePanel/ProfilePanel';
 
 function Assignments({ selectedClassroom, setSelectedAssignment }) {
   const [activeAssignment, setActiveAssignment] = useState(null);
   const [truncatedAssignments, setTruncatedAssignments] = useState([]);
+
+  const role = getRole();
 
   // Memoize the assignments array
   const assignments = useMemo(() => {
@@ -65,7 +68,9 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
       <br />
       <br />
       <div id="not-submitted">
-        <h2>Непредадени</h2>
+        {role === "ученик" && (
+          <h2>Непредадени</h2>
+        )}
 
         <div className="horizontal-layout">
           <div className="vertical-line"></div>
@@ -76,11 +81,16 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
                 content={assignment.truncTitle}
                 active={activeAssignment === assignment.id}
                 onClick={() => handleClick(assignment.id)}
-              />
-            ))}
+                />
+              ))}
           </div>
         </div>
       </div>
+      {role === "учител" && (
+        <div id='addButton'>
+          <Button content="Добави задание"></Button>
+        </div>
+      )}
     </div>
   );
 }

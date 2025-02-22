@@ -9,8 +9,36 @@ function ClassroomsPanel({ setSelectedClassroom, selectedClassroom }) {
     { id: 0, content: <div className='classroom'><div><img src='https://fakeimg.pl/20x20?text=EN'/> Английски език</div> <div className='notifyIndicator active'></div></div>, 
       title: "Английски език", 
       assignments: [
-        { id: 0, title: 'Домашна работа - 11.02', description: "123", dueDate: "23.03, 10:30", maxPoints: "100", userPoints: ""},
-        { id: 1, title: 'Есе на тема “Как научих англиasdasdasdasdasdsadasFasfg artaegйск...' },
+        { id: 0, title: 'Домашна работа - 11.02', description: "123", dueDate: "23.03, 10:30", maxPoints: "100", userPoints: "", submissions: [
+          {
+            studentName: "Пацо Пацов",
+            files: [
+              {name: "file1.png", url:"test"},
+              {name: "file2.png", url:"test2"}
+            ]
+          },
+          {
+            studentName: "Йово Михов",
+            files: [
+              {name: "file1.png", url:"test"},
+              {name: "file2.png", url:"test2"},
+              {name: "file3.png", url:"test2"},
+              {name: "file4.png", url:"test2"},
+              {name: "file5.png", url:"test2"},
+              {name: "file1.png", url:"test"},
+              {name: "file2.png", url:"test2"},
+              {name: "file3.png", url:"test2"},
+              {name: "file4.png", url:"test2"},
+              {name: "file5.png", url:"test2"},
+            ]
+          },
+          {
+            studentName: "Пантата",
+            files: [
+            ]
+          }
+        ]},
+        { id: 1, title: 'Есе на тема “Как научих англиasdasdasdasdasdsadasFasfg artaegйск...',  },
         { id: 2, title:  'Презентация на тема “Какво...'},
       ],
       grades: [

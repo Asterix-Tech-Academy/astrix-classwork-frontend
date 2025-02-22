@@ -1,6 +1,8 @@
 import Button from "../Button/Button";
+import { getRole } from '../profilePanel/ProfilePanel';
 
 function AssignmentDetails({assignment}) {
+  const role = getRole();
 
   if (!assignment) {
     return (
@@ -21,22 +23,46 @@ function AssignmentDetails({assignment}) {
         <h1>Детайли</h1>
         <p className='smallText'>{assignment.title}</p>
       </div>
-
       <p>{assignment.description || "Няма описание"}</p>
-
       <div className="horizontal-line"></div>
-
       <div id="assignmentResult">
         <p>Краен срок: {assignment.dueDate} </p>
         <p>Точки: {assignment.userPoints || "~"}/{assignment.maxPoints}</p>
       </div>
-
       <div className="horizontal-line"></div>
-      <div id="myWork">
-        <h2>Моята работа</h2>
-        <p className="smallText">Няма прикачена работа</p>
-        <Button content={ <div> Прикачи <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" d="M8.977 2.806a1.69 1.69 0 0 0-2.304.082L3.28 6.28a.75.75 0 1 1-1.06-1.06l3.392-3.392a3.192 3.192 0 1 1 4.458 4.569l-4.724 4.496A1.923 1.923 0 0 1 2.66 8.14l4.243-4.244a.75.75 0 1 1 1.06 1.061l-4.24 4.244a.423.423 0 0 0 .59.605L9.035 5.31a1.69 1.69 0 0 0-.058-2.504"/></svg> </div> }/>
-      </div>
+
+      {role === "учител" && (
+        <div id="submissions">
+          <h2>Предадени работи</h2>
+          <div className="submissions-list">
+            {assignment.submissions?.map((submission) => (
+              <div key={submission.id} className="submission-item">
+                <div className="submission-header">
+                  <h3>{submission.studentName}</h3>
+                  <div className="points-input">
+                    <input 
+                      type="number" 
+                      placeholder="Точки"
+                      min="0"
+                      max={assignment.maxPoints}
+                      defaultValue={submission.points}
+                    />
+                    /{assignment.maxPoints}
+                  </div>
+                </div>
+                <div className="attached-files">
+                  {submission.files?.map((file, index) => (
+                    <div key={index} className="file-item">
+                      <span>{file.name}</span>
+                      <Button content="Изтегли" onClick={() => window.open(file.url)} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

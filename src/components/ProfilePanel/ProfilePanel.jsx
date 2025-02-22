@@ -19,4 +19,8 @@ function ProfilePanel() {
   );
 }
 
+export function getRole() {
+  return "учител"
+}
+
 export default ProfilePanel;
