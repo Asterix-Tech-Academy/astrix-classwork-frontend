@@ -5,6 +5,8 @@ import './ClassroomsPanel.css';
 function ClassroomsPanel({ setSelectedClassroom, selectedClassroom }) {
   const [activeClassroom, setActiveClassroom] = useState(null);
 
+  
+
   const classrooms = [
     { 
       id: 0, 
