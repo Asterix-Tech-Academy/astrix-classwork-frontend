@@ -5,11 +5,15 @@ import './Auth.css';
 const Register = () => {
   const [formData, setFormData] = useState({
     email: '',
+    username: '', // Add username to initial state
     password: '',
     confirmPassword: '',
     userType: 'student',
     firstName: '',
     lastName: '',
+    classroom: '',
+    isClassTeacher: false,
+    classTeacherOf: ''
   });
   const navigate = useNavigate();
 
@@ -44,6 +48,16 @@ const Register = () => {
             <option value="student">Student</option>
             <option value="teacher">Teacher</option>
           </select>
+        </div>
+        <div className="form-group">
+          <label>Username:</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className="form-group">
           <label>First Name:</label>
@@ -95,6 +109,56 @@ const Register = () => {
             required
           />
         </div>
+
+        {formData.userType === 'teacher' && (
+          <>
+            <div className="form-group">
+              <label>Subject/Classroom:</label>
+              <input
+                type="text"
+                name="classroom"
+                value={formData.classroom}
+                onChange={handleChange}
+                placeholder="Enter your subject"
+                required={formData.userType === 'teacher'}
+              />
+            </div>
+
+            <div className="form-group checkbox-group">
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  name="isClassTeacher"
+                  checked={formData.isClassTeacher}
+                  onChange={(e) => {
+                    const isChecked = e.target.checked;
+                    setFormData({
+                      ...formData,
+                      isClassTeacher: isChecked,
+                      classTeacherOf: isChecked ? formData.classTeacherOf : ''
+                    });
+                  }}
+                />
+                <span>I am a Class Teacher</span>
+              </label>
+            </div>
+
+            {formData.isClassTeacher && (
+              <div className="form-group">
+                <label>Class Teacher Of:</label>
+                <input
+                  type="text"
+                  name="classTeacherOf"
+                  value={formData.classTeacherOf}
+                  onChange={handleChange}
+                  placeholder="Enter class (e.g., 10Б)"
+                  required={formData.isClassTeacher}
+                />
+              </div>
+            )}
+          </>
+        )}
+
         <button type="submit">Register</button>
       </form>
     </div>
