@@ -4,7 +4,7 @@ import { login } from '../../backend/apiHelper';
 import './Auth.css';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('student');
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,7 @@ const Login = () => {
       setIsLoading(true);
       
       const credentials = {
-        email,
+        identifier,
         password,
         role
       };
@@ -64,11 +64,11 @@ const Login = () => {
           </select>
         </div>
         <div className="form-group">
-          <label>Email:</label>
+          <label>Email or Username:</label>
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={identifier}
+            onChange={(e) => setIdentifier(e.target.value)}
             required
           />
         </div>
