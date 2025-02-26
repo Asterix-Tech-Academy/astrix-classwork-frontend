@@ -15,7 +15,7 @@ const Register = () => {
     classroom: '',
     isClassTeacher: false,
     classTeacherOf: '',
-    studentClass: '' // Adding new field for student's class
+    studentClass: ''
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -56,7 +56,7 @@ const Register = () => {
           userData.classTeacherOf = formData.classTeacherOf;
         }
       } else if (formData.role === 'student') {
-        userData.studentClass = formData.studentClass; // Add student class to userData
+        userData.studentClass = formData.studentClass;
       }
 
       const response = await register(userData);
