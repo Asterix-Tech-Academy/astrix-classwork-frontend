@@ -9,12 +9,13 @@ const Register = () => {
     username: '', 
     password: '',
     confirmPassword: '',
-    userType: 'student',
+    role: 'student',
     firstName: '',
     lastName: '',
     classroom: '',
     isClassTeacher: false,
-    classTeacherOf: ''
+    classTeacherOf: '',
+    studentClass: '' // Adding new field for student's class
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -43,17 +44,19 @@ const Register = () => {
         email: formData.email,
         username: formData.username,
         password: formData.password,
-        userType: formData.userType,
+        role: formData.role, 
         firstName: formData.firstName,
         lastName: formData.lastName
       };
 
-      if (formData.userType === 'teacher') {
+      if (formData.role === 'teacher') { 
         userData.classroom = formData.classroom;
         userData.isClassTeacher = formData.isClassTeacher;
         if (formData.isClassTeacher) {
           userData.classTeacherOf = formData.classTeacherOf;
         }
+      } else if (formData.role === 'student') {
+        userData.studentClass = formData.studentClass; // Add student class to userData
       }
 
       const response = await register(userData);
@@ -76,8 +79,8 @@ const Register = () => {
         <div className="form-group">
           <label>User Type:</label>
           <select 
-            name="userType"
-            value={formData.userType}
+            name="role"
+            value={formData.role} 
             onChange={handleChange}
           >
             <option value="student">Student</option>
@@ -145,7 +148,21 @@ const Register = () => {
           />
         </div>
 
-        {formData.userType === 'teacher' && (
+        {formData.role === 'student' && (
+          <div className="form-group">
+            <label>Class:</label>
+            <input
+              type="text"
+              name="studentClass"
+              value={formData.studentClass}
+              onChange={handleChange}
+              placeholder="Enter your class (e.g., 10Б)"
+              required={formData.role === 'student'}
+            />
+          </div>
+        )}
+
+        {formData.role === 'teacher' && (
           <>
             <div className="form-group">
               <label>Subject/Classroom:</label>
@@ -155,7 +172,7 @@ const Register = () => {
                 value={formData.classroom}
                 onChange={handleChange}
                 placeholder="Enter your subject"
-                required={formData.userType === 'teacher'}
+                required={formData.role === 'teacher'}
               />
             </div>
 
