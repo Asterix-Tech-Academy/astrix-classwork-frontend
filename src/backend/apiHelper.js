@@ -47,7 +47,7 @@ export const logout = () => {
   localStorage.removeItem('user');
   return apiRequest('/logout');
 };
-
+ 
 export const createHomework = (homeworkData) => apiRequest('/homeworks', 'POST', homeworkData);
 export const getHomework = (id) => apiRequest(`/homeworks/${id}`);
 export const updateHomework = (id, homeworkData) => apiRequest(`/homeworks/${id}`, 'PUT', homeworkData);

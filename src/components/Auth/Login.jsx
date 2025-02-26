@@ -6,7 +6,6 @@ import './Auth.css';
 const Login = () => {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('student');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -20,8 +19,7 @@ const Login = () => {
       
       const credentials = {
         identifier,
-        password,
-        role
+        password
       };
 
       const response = await login(credentials);
@@ -29,7 +27,8 @@ const Login = () => {
     
       localStorage.setItem('user', JSON.stringify(response));
       
-      switch(role) {
+      // Navigate based on the role returned from the server
+      switch(response.role) {
         case 'admin':
           navigate('/admin');
           break;
@@ -52,17 +51,6 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="auth-form">
         <h2>Login</h2>
         {error && <div className="error-message">{error}</div>}
-        <div className="form-group">
-          <label>User Type:</label>
-          <select 
-            value={role} 
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
-            <option value="admin">Admin</option>
-          </select>
-        </div>
         <div className="form-group">
           <label>Email or Username:</label>
           <input
