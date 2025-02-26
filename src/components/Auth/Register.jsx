@@ -15,7 +15,7 @@ const Register = () => {
     classroom: '',
     isClassTeacher: false,
     classTeacherOf: '',
-    studentClass: ''
+    className: ''
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -56,7 +56,7 @@ const Register = () => {
           userData.classTeacherOf = formData.classTeacherOf;
         }
       } else if (formData.role === 'student') {
-        userData.studentClass = formData.studentClass;
+        userData.className = formData.className;
       }
 
       const response = await register(userData);
@@ -153,8 +153,8 @@ const Register = () => {
             <label>Class:</label>
             <input
               type="text"
-              name="studentClass"
-              value={formData.studentClass}
+              name="className"
+              value={formData.className}
               onChange={handleChange}
               placeholder="Enter your class (e.g., 10Б)"
               required={formData.role === 'student'}
