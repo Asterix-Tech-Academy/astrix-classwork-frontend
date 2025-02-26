@@ -10,11 +10,16 @@ function UserManagement() {
     name: '',
     role: 'ученик',
     class: '',
+    password: '',
+    confirmPassword: ''
   });
 
   const handleAddUser = (e) => {
     e.preventDefault();
-    // Логика за добавяне към база данни
+    if (newUser.password !== newUser.confirmPassword) {
+      alert('Паролите не съвпадат!');
+      return;
+    }
     console.log('Добавяне на потребител:', newUser);
   };
 
@@ -40,8 +45,18 @@ function UserManagement() {
                 <td>{user.role}</td>
                 <td>{user.class || user.subjects?.join(', ')}</td>
                 <td>
-                  <button onClick={() => console.log('Редактиране:', user.id)}>Редактиране</button>
-                  <button onClick={() => console.log('Изтриване:', user.id)}>Изтриване</button>
+                  <button 
+                    className="edit-button"
+                    onClick={() => console.log('Редактиране:', user.id)}
+                  >
+                    Редактиране
+                  </button>
+                  <button 
+                    className="delete-button"
+                    onClick={() => console.log('Изтриване:', user.id)}
+                  >
+                    Изтриване
+                  </button>
                 </td>
               </tr>
             ))}
@@ -56,10 +71,12 @@ function UserManagement() {
           placeholder="Име"
           value={newUser.name}
           onChange={e => setNewUser({...newUser, name: e.target.value})}
+          required
         />
         <select
           value={newUser.role}
           onChange={e => setNewUser({...newUser, role: e.target.value})}
+          required
         >
           <option value="ученик">Ученик</option>
           <option value="учител">Учител</option>
@@ -70,6 +87,20 @@ function UserManagement() {
           placeholder="Клас (за ученици)"
           value={newUser.class}
           onChange={e => setNewUser({...newUser, class: e.target.value})}
+        />
+        <input
+          type="password"
+          placeholder="Парола"
+          value={newUser.password}
+          onChange={e => setNewUser({...newUser, password: e.target.value})}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Потвърди парола"
+          value={newUser.confirmPassword}
+          onChange={e => setNewUser({...newUser, confirmPassword: e.target.value})}
+          required
         />
         <button type="submit">Добави</button>
       </form>

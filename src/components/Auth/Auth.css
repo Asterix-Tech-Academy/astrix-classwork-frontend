@@ -1,0 +1,154 @@
+.auth-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+  min-height: 98vh;
+  padding: 5px;
+  background-color: var(--body-background-color, #92a9c8);
+}
+
+.auth-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  background-color: rgba(255, 255, 255, 0.43);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  animation: slideDownFadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.auth-form h2 {
+  font-size: 32px;
+  font-weight: 700;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  text-align: center;
+  color: var(--text-primary, #333);
+}
+
+.form-group {
+  display: grid;
+  gap: 5px;
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--text-primary, #333);
+  text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.085);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid rgba(93, 93, 93, 0.15);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: "Sofia Sans", serif;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: background-color 0.1s ease;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* For select elements, add a custom arrow */
+.form-group select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 1em;
+  padding-right: 40px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.auth-form button {
+  font-family: "Sofia Sans", serif;
+  outline: none;
+  border: 1px rgba(93, 93, 93, 0.15);
+  border-style: solid;
+  border-radius: 12px;
+  padding: 10px 15px;
+  width: 100%;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: background-color 0.1s ease;
+  animation: slideDownFadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  opacity: 0.5;
+}
+
+.auth-form button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.auth-links {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.auth-links a {
+  color: var(--text-primary, #333);
+  text-decoration: none;
+  font-weight: 500;
+  text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.085);
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+@keyframes slideDownFadeIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile responsive styles */
+@media screen and (max-width: 768px) {
+  .auth-container {
+    padding: 1rem;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+  }
+
+  .auth-form {
+    width: 98%;
+    padding: 1.5rem;
+    margin: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.5rem;
+  }
+}
+
+.error-message {
+  color: rgb(203, 101, 101);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.success-message {
+  color: rgb(101, 203, 101);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

@@ -22,20 +22,369 @@
 }
 
 .admin-nav button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .admin-nav button.active {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(52, 152, 219, 0.3);
+  color: #fff;
+  border: 1px solid rgba(52, 152, 219, 0.5);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transform: translateY(-2px);
+}
+
+.admin-nav button:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .admin-content {
   overflow-y: auto;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.pending-users {
+  width: 100%;
+}
+
+/* Panel Styles */
+.panel {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Table Styles */
+.users-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.users-table th,
+.users-table td {
   padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.users-table th {
+  background: rgba(255, 255, 255, 0.03);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.users-table tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Common Button Styles */
+.admin-nav button,
+.accept-button,
+.reject-button,
+.add-user-form button,
+.class-actions button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
+  margin-right: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+/* Action Buttons */
+.accept-button {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.4);
+}
+
+.reject-button {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.4);
+}
+
+.add-user-form button,
+.class-actions button {
+  background: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+  border: 1px solid rgba(52, 152, 219, 0.4);
+}
+
+/* Button Hover States */
+.accept-button:hover {
+  background: rgba(46, 204, 113, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(46, 204, 113, 0.6);
+}
+
+.reject-button:hover {
+  background: rgba(231, 76, 60, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(231, 76, 60, 0.6);
+}
+
+.add-user-form button:hover,
+.class-actions button:hover {
+  background: rgba(52, 152, 219, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(52, 152, 219, 0.6);
+}
+
+/* Active/Focus States */
+.admin-nav button:active,
+.accept-button:active,
+.reject-button:active,
+.add-user-form button:active,
+.class-actions button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styles */
+.accept-button,
+.reject-button,
+.add-user-form button,
+.class-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.accept-button {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.reject-button {
+  background: rgba(231, 76, 60, 0.15);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.accept-button:hover {
+  background: rgba(46, 204, 113, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.reject-button:hover {
+  background: rgba(231, 76, 60, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.add-user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+}
+
+.add-user-form input::placeholder,
+.add-user-form select {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.add-user-form input,
+.add-user-form select {
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.add-user-form select option {
+  background: #fff;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.add-user-form input:focus,
+.add-user-form select:focus {
+  border-color: rgba(52, 152, 219, 0.5);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.add-user-form button {
+  background: rgba(52, 152, 219, 0.15);
+  color: #3498db;
+  border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.add-user-form button:hover {
+  background: rgba(52, 152, 219, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Section Headers */
+h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Class Management Styles */
+.class-card {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.class-card h3 {
+  margin-top: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.class-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.class-actions button {
+  background: rgba(52, 152, 219, 0.15);
+  color: #3498db;
+  border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.class-actions button:hover {
+  background: rgba(52, 152, 219, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Action Buttons */
+.edit-button,
+.delete-button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-right: 0.5rem;
+}
+
+.edit-button {
+  background: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+  border: 1px solid rgba(52, 152, 219, 0.4);
+}
+
+.delete-button {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.4);
+}
+
+.edit-button:hover {
+  background: rgba(52, 152, 219, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(52, 152, 219, 0.6);
+}
+
+.delete-button:hover {
+  background: rgba(231, 76, 60, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(231, 76, 60, 0.6);
+}
+
+.edit-button:active,
+.delete-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Log Management Styles */
+.log-filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.logs-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1rem;
+}
+
+.logs-table th,
+.logs-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logs-table th {
+  background: rgba(255, 255, 255, 0.03);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.logs-table tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.log-filters button {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.log-filters button.active {
+  background: rgba(52, 152, 219, 0.3);
+  color: #fff;
+  border: 1px solid rgba(52, 152, 219, 0.5);
+}
+
+.log-filters button:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
 }

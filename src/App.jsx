@@ -12,6 +12,8 @@ import SettingsPanel from './components/Settings/SettingsPanel';
 import Settings from './components/Settings/Settings';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AdminDashboard from './components/Admin/AdminDashboard';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
 
 const BackButton = ({ onClick, text }) => {
   const backRef = useRef();
@@ -82,6 +84,8 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={
           <div
             className={`dashboard ${

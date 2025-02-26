@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import UserManagement from './UserManagement';
 import ClassManagement from './ClassManagement';
+import PendingUsers from './PendingUsers';
+import LogManager from './LogManager';
 import './AdminDashboard.css';
 
 function AdminDashboard() {
@@ -9,6 +11,8 @@ function AdminDashboard() {
   const sections = {
     users: <UserManagement />,
     classes: <ClassManagement />,
+    pending: <PendingUsers />,
+    logs: <LogManager />,
   };
 
   return (
@@ -27,6 +31,18 @@ function AdminDashboard() {
             onClick={() => setActiveSection('classes')}
           >
             Управление на Класове
+          </button>
+          <button 
+            className={activeSection === 'pending' ? 'active' : ''} 
+            onClick={() => setActiveSection('pending')}
+          >
+            Чакащи Регистрации
+          </button>
+          <button 
+            className={activeSection === 'logs' ? 'active' : ''} 
+            onClick={() => setActiveSection('logs')}
+          >
+            Системен Журнал
           </button>
         </div>
       </nav>
