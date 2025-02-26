@@ -29,7 +29,6 @@ const apiRequest = async (endpoint, method = 'GET', body = null) => {
   }
 };
 
-// Authentication endpoints
 export const register = async (userData) => {
   try {
     const response = await fetch('/api/register', {
@@ -39,11 +38,9 @@ export const register = async (userData) => {
       },
       body: JSON.stringify(userData),
     });
-    
-    // Check if response is JSON
+
     const contentType = response.headers.get('content-type');
     if (!contentType || !contentType.includes('application/json')) {
-      // Get the text response to include in the error
       const textResponse = await response.text();
       throw new Error(`Server returned non-JSON response: ${textResponse}`);
     }
@@ -66,29 +63,24 @@ export const logout = () => {
   return apiRequest('/logout');
 };
 
-// Homework Management endpoints
 export const createHomework = (homeworkData) => apiRequest('/homeworks', 'POST', homeworkData);
 export const getHomework = (id) => apiRequest(`/homeworks/${id}`);
 export const updateHomework = (id, homeworkData) => apiRequest(`/homeworks/${id}`, 'PUT', homeworkData);
 export const deleteHomework = (id) => apiRequest(`/homeworks/${id}`, 'DELETE');
 
-// Homework Submission endpoints
 export const submitHomework = (submissionData) => apiRequest('/submit-homework', 'POST', submissionData);
 export const getSubmittedHomework = (id) => apiRequest(`/submitted-homeworks/${id}`);
 
-// Grade Management endpoints
 export const getGrade = (id) => apiRequest(`/grades/${id}`);
 export const updateGrade = (id, gradeData) => apiRequest(`/grades/${id}`, 'PUT', gradeData);
 export const generateReport = (reportData) => apiRequest('/reports/generate', 'POST', reportData);
 export const getReport = (reportId) => apiRequest(`/reports/${reportId}`);
 export const getAllReports = () => apiRequest('/reports');
 
-// User Management endpoints
 export const getUserProfile = (id) => apiRequest(`/users/${id}`);
 export const updateUserProfile = (id, userData) => apiRequest(`/users/${id}`, 'PUT', userData);
 export const deleteUser = (id) => apiRequest(`/users/${id}`, 'DELETE');
 
-// Class Management endpoints
 export const getAllClasses = () => apiRequest('/classes');
 export const getClass = (id) => apiRequest(`/classes/${id}`);
 export const getClassStudents = (id) => apiRequest(`/classes/${id}/students`);
