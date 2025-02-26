@@ -54,6 +54,7 @@ const Register = () => {
         userData.isClassTeacher = formData.isClassTeacher;
         if (formData.isClassTeacher) {
           userData.classTeacherOf = formData.classTeacherOf;
+          userData.className = formData.classTeacherOf;
         }
       } else if (formData.role === 'student') {
         userData.className = formData.className;
