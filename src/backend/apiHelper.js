@@ -30,7 +30,36 @@ const apiRequest = async (endpoint, method = 'GET', body = null) => {
 };
 
 // Authentication endpoints
-export const register = (userData) => apiRequest('/register', 'POST', userData);
+export const register = async (userData) => {
+  try {
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    
+    // Check if response is JSON
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      // Get the text response to include in the error
+      const textResponse = await response.text();
+      throw new Error(`Server returned non-JSON response: ${textResponse}`);
+    }
+    
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.message || 'Registration failed');
+    }
+    
+    return data;
+  } catch (error) {
+    console.error('Registration error:', error);
+    throw error;
+  }
+};
 export const login = (credentials) => apiRequest('/login', 'POST', credentials);
 export const logout = () => {
   localStorage.removeItem('user');
