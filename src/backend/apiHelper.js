@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000';
+const API_URL = 'http://localhost:8080';
 
 // Helper function for API calls
 const apiRequest = async (endpoint, method = 'GET', body = null) => {

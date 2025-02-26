@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { register } from '../../backend/apiHelper';
 import './Auth.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
     email: '',
-    username: '', // Add username to initial state
+    username: '', 
     password: '',
     confirmPassword: '',
     userType: 'student',
@@ -15,6 +16,8 @@ const Register = () => {
     isClassTeacher: false,
     classTeacherOf: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,20 +27,52 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords don't match!");
+      setError("Passwords don't match!");
       return;
     }
-    console.log('Registration data:', formData);
-    navigate('/login');
+
+    try {
+      setIsLoading(true);
+      
+      const userData = {
+        email: formData.email,
+        username: formData.username,
+        password: formData.password,
+        userType: formData.userType,
+        firstName: formData.firstName,
+        lastName: formData.lastName
+      };
+
+      if (formData.userType === 'teacher') {
+        userData.classroom = formData.classroom;
+        userData.isClassTeacher = formData.isClassTeacher;
+        if (formData.isClassTeacher) {
+          userData.classTeacherOf = formData.classTeacherOf;
+        }
+      }
+
+      const response = await register(userData);
+      console.log('Registration successful:', response);
+      
+      navigate('/login');
+    } catch (err) {
+      setError(err.message || 'Registration failed. Please try again.');
+      console.error('Registration error:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="auth-container">
       <form onSubmit={handleSubmit} className="auth-form">
         <h2>Register</h2>
+        {error && <div className="error-message">{error}</div>}
         <div className="form-group">
           <label>User Type:</label>
           <select 
@@ -159,7 +194,9 @@ const Register = () => {
           </>
         )}
 
-        <button type="submit">Register</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? 'Registering...' : 'Register'}
+        </button>
       </form>
     </div>
   );
