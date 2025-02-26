@@ -6,7 +6,7 @@ import './Auth.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('student');
+  const [role, setRole] = useState('student');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -21,14 +21,15 @@ const Login = () => {
       const credentials = {
         email,
         password,
-        role: userType
+        role
       };
-      
-      const response = await login(credentials);
 
+      const response = await login(credentials);
+      console.log('Login successful:', response);
+    
       localStorage.setItem('user', JSON.stringify(response));
       
-      switch(userType) {
+      switch(role) {
         case 'admin':
           navigate('/admin');
           break;
@@ -39,7 +40,7 @@ const Login = () => {
           navigate('/');
       }
     } catch (err) {
-      setError(err.message || 'Login failed. Please try again.');
+      setError(err.message || 'Login failed. Please check your credentials.');
       console.error('Login error:', err);
     } finally {
       setIsLoading(false);
@@ -54,8 +55,8 @@ const Login = () => {
         <div className="form-group">
           <label>User Type:</label>
           <select 
-            value={userType} 
-            onChange={(e) => setUserType(e.target.value)}
+            value={role} 
+            onChange={(e) => setRole(e.target.value)}
           >
             <option value="student">Student</option>
             <option value="teacher">Teacher</option>
