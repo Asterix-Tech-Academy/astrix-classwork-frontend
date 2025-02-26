@@ -33,7 +33,7 @@ const Register = () => {
     setError(null);
     
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords don't match!");
+      setError("Паролите не съвпадат!");
       return;
     }
 
@@ -64,7 +64,7 @@ const Register = () => {
       
       navigate('/login');
     } catch (err) {
-      setError(err.message || 'Registration failed. Please try again.');
+      setError(err.message || 'Регистрацията е неуспешна. Моля, опитайте отново.');
       console.error('Registration error:', err);
     } finally {
       setIsLoading(false);
@@ -74,21 +74,21 @@ const Register = () => {
   return (
     <div className="auth-container">
       <form onSubmit={handleSubmit} className="auth-form">
-        <h2>Register</h2>
+        <h2>Регистрация</h2>
         {error && <div className="error-message">{error}</div>}
         <div className="form-group">
-          <label>User Type:</label>
+          <label>Тип потребител:</label>
           <select 
             name="role"
             value={formData.role} 
             onChange={handleChange}
           >
-            <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
+            <option value="student">Ученик</option>
+            <option value="teacher">Учител</option>
           </select>
         </div>
         <div className="form-group">
-          <label>Username:</label>
+          <label>Потребителско име:</label>
           <input
             type="text"
             name="username"
@@ -98,7 +98,7 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label>First Name:</label>
+          <label>Име:</label>
           <input
             type="text"
             name="firstName"
@@ -108,7 +108,7 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label>Last Name:</label>
+          <label>Фамилия:</label>
           <input
             type="text"
             name="lastName"
@@ -118,7 +118,7 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label>Email:</label>
+          <label>Имейл:</label>
           <input
             type="email"
             name="email"
@@ -128,7 +128,7 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label>Password:</label>
+          <label>Парола:</label>
           <input
             type="password"
             name="password"
@@ -138,7 +138,7 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label>Confirm Password:</label>
+          <label>Потвърди парола:</label>
           <input
             type="password"
             name="confirmPassword"
@@ -150,13 +150,13 @@ const Register = () => {
 
         {formData.role === 'student' && (
           <div className="form-group">
-            <label>Class:</label>
+            <label>Клас:</label>
             <input
               type="text"
               name="className"
               value={formData.className}
               onChange={handleChange}
-              placeholder="Enter your class (e.g., 10Б)"
+              placeholder="Въведете вашия клас (напр., 10Б)"
               required={formData.role === 'student'}
             />
           </div>
@@ -165,13 +165,13 @@ const Register = () => {
         {formData.role === 'teacher' && (
           <>
             <div className="form-group">
-              <label>Subject/Classroom:</label>
+              <label>Предмет:</label>
               <input
                 type="text"
                 name="classroom"
                 value={formData.classroom}
                 onChange={handleChange}
-                placeholder="Enter your subject"
+                placeholder="Въведете вашият предмет"
                 required={formData.role === 'teacher'}
               />
             </div>
@@ -191,19 +191,19 @@ const Register = () => {
                     });
                   }}
                 />
-                <span>I am a Class Teacher</span>
+                <span>Аз съм класен ръководител</span>
               </label>
             </div>
 
             {formData.isClassTeacher && (
               <div className="form-group">
-                <label>Class Teacher Of:</label>
+                <label>Класен ръководител на:</label>
                 <input
                   type="text"
                   name="classTeacherOf"
                   value={formData.classTeacherOf}
                   onChange={handleChange}
-                  placeholder="Enter class (e.g., 10Б)"
+                  placeholder="Въведете клас (напр., 10Б)"
                   required={formData.isClassTeacher}
                 />
               </div>
@@ -212,7 +212,7 @@ const Register = () => {
         )}
 
         <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Registering...' : 'Register'}
+          {isLoading ? 'Регистриране...' : 'Регистрирай се'}
         </button>
       </form>
     </div>
