@@ -18,11 +18,26 @@ const apiRequest = async (endpoint, method = 'GET', body = null) => {
     const response = await fetch(`${API_URL}${endpoint}`, config);
     
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
+      // Try to parse as JSON, fall back to text
+      const errorText = await response.text();
+      let errorData = {};
+      try {
+        errorData = JSON.parse(errorText);
+      } catch (e) {
+        // If it's not valid JSON, use the text as error message
+        throw new Error(errorText || `Request failed with status ${response.status}`);
+      }
       throw new Error(errorData.message || `Request failed with status ${response.status}`);
     }
     
-    return await response.json();
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      return await response.json();
+    } else {
+      // Handle non-JSON responses
+      const text = await response.text();
+      return { message: text };
+    }
   } catch (error) {
     console.error(`API Error: ${error.message}`);
     throw error;
