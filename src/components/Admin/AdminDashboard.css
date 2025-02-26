@@ -243,13 +243,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-h2 {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-}
+
 
 .class-card {
   background: rgba(255, 255, 255, 0.02);
