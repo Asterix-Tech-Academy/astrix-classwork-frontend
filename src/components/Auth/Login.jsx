@@ -10,7 +10,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Directly navigate without authentication
     switch(userType) {
       case 'admin':
         navigate('/admin');

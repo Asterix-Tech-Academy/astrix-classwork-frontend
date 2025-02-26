@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-// Mock data for testing
 const mockPendingUsers = [
   {
     id: 1,
@@ -29,13 +28,11 @@ function PendingUsers() {
   const [pendingUsers, setPendingUsers] = useState([]);
 
   useEffect(() => {
-    // For testing, use mock data instead of API call
     setPendingUsers(mockPendingUsers);
   }, []);
 
   const handleAcceptUser = async (userId) => {
     try {
-      // For testing, just remove the user from the list
       setPendingUsers(pendingUsers.filter(user => user.id !== userId));
       console.log(`User ${userId} accepted`);
     } catch (error) {
@@ -45,7 +42,6 @@ function PendingUsers() {
 
   const handleRejectUser = async (userId) => {
     try {
-      // For testing, just remove the user from the list
       setPendingUsers(pendingUsers.filter(user => user.id !== userId));
       console.log(`User ${userId} rejected`);
     } catch (error) {

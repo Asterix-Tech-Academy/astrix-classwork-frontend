@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// Mock data for testing
 const mockLogs = [
   {
     id: 1,

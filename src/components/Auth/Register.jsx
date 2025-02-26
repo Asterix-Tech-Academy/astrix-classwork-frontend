@@ -26,7 +26,6 @@ const Register = () => {
       alert("Passwords don't match!");
       return;
     }
-    // Here you would typically make an API call to register the user
     console.log('Registration data:', formData);
     navigate('/login');
   };
