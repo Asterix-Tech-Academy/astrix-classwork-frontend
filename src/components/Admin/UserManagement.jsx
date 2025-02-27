@@ -28,7 +28,7 @@ function UserManagement() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/users');
+      const response = await fetch('http://localhost:8080/');
       if (!response.ok) {
         throw new Error('Проблем при извличане на потребителите');
       }
