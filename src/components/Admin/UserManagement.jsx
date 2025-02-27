@@ -38,19 +38,6 @@ function UserManagement() {
         <h3>Текущи Потребители</h3>
         
         <div className="table-container">
-          <div className="table-search">
-            <input 
-              type="text" 
-              placeholder="Търсене по име..." 
-              className="search-input"
-            />
-            <select className="role-filter">
-              <option value="all">Всички роли</option>
-              <option value="ученик">Ученик</option>
-              <option value="учител">Учител</option>
-              <option value="администратор">Администратор</option>
-            </select>
-          </div>
           
           <table className="users-table">
             <thead>
