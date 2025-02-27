@@ -32,7 +32,7 @@ function UserManagement() {
 
   return (
     <div className="user-management">
-      <h2 style={{"margin-bottom": "20px"}}>Управление на Потребители</h2>
+      <h2 style={{"marginBottom": "20px"}}>Управление на Потребители</h2>
       
       <div className="user-list panel">
         <h3>Текущи Потребители</h3>

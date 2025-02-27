@@ -18,7 +18,7 @@ function ClassManagement() {
 
   return (
     <div className="class-management">
-      <h2 style={{"margin-bottom": "20px"}}>Управление на Класове</h2>     
+      <h2 style={{"marginBottom": "20px"}}>Управление на Класове</h2>     
         {classes.map(cls => (
           <div key={cls.id} className="class-card">
             <h3>{cls.name}</h3>

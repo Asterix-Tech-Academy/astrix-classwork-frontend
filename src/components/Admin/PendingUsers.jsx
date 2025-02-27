@@ -51,7 +51,7 @@ function PendingUsers() {
 
   return (
     <div className="pending-users">
-      <h2 style={{"margin-bottom": "20px"}}>Чакащи Регистрации</h2>
+      <h2 style={{"marginBottom": "20px"}}>Чакащи Регистрации</h2>
       {pendingUsers.length === 0 ? (
         <p>Няма чакащи регистрации</p>
       ) : (
