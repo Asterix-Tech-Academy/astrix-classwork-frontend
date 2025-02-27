@@ -66,6 +66,9 @@ export const getUserProfile = (id) => apiRequest(`/users/${id}`);
 export const updateUserProfile = (id, userData) => apiRequest(`/users/${id}`, 'PUT', userData);
 export const deleteUser = (id) => apiRequest(`/users/${id}`, 'DELETE');
 
+export const getAllUsers = () => apiRequest('/users');
+export const createUser = (userData) => apiRequest('/users', 'POST', userData);
+
 export const getAllClasses = () => apiRequest('/classes');
 export const getClass = (id) => apiRequest(`/classes/${id}`);
 export const getClassStudents = (id) => apiRequest(`/classes/${id}/students`);
