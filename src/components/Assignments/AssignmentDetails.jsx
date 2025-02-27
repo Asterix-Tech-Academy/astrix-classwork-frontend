@@ -1,5 +1,5 @@
 import Button from "../Button/Button";
-import { getRole } from '../profilePanel/ProfilePanel';
+import { getRoleName } from '/src/components/ProfilePanel/ProfilePanel.jsx';
 import { useState } from 'react';
 
 const formatDueDate = (dueDate) => {
@@ -43,7 +43,7 @@ const getPointsClass = (userPoints, maxPoints) => {
 
 const AssignmentDetails = ({ assignment }) => {
   const [points, setPoints] = useState({});
-  const role = getRole();
+  const role = getRoleName();
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
     description: assignment?.description || "",

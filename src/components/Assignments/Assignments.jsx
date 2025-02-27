@@ -5,14 +5,14 @@ import {
   calcTruncateWinWidth,
   truncateString,
 } from '../../backend/truncateString';
-import { getRole } from '../profilePanel/ProfilePanel';
+import { getRoleName } from '/src/components/ProfilePanel/ProfilePanel.jsx';
 
 function Assignments({ selectedClassroom, setSelectedAssignment }) {
   const [activeAssignment, setActiveAssignment] = useState(null);
   const [truncatedAssignments, setTruncatedAssignments] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
 
-  const role = getRole();
+  const role = getRoleName();
 
   // Memoize the assignments array
   const assignments = useMemo(() => {
