@@ -5,9 +5,9 @@ function UserManagement() {
     { id: 1, name: 'Преслав Колев', role: 'ученик', class: '11A' },
     { id: 2, name: 'Пенка Пенкова', role: 'учител', subjects: ['Английски'] },
     { id: 3, name: 'Ивана Петрова', role: 'ученик', class: '10Б' },
-    { id: 4,name: 'Мария Димитрова', role: 'учител', subjects: ['Математика', 'Информатика'] },
+    { id: 4, name: 'Мария Димитрова', role: 'учител', subjects: ['Математика', 'Информатика'] },
     { id: 5, name: 'Стоян Николов', role: 'ученик', class: '12В' },
-    { id: 6, name: 'Антон Стоянов', role: 'admin', subjects: [] },
+    { id: 6, name: 'Антон Стоянов', role: 'администратор', subjects: [] },
     { id: 7, name: 'Лилия Тодорова', role: 'учител', subjects: ['История', 'География'] },
     { id: 8, name: 'Елена Василева', role: 'ученик', class: '10A' },
     { id: 9, name: 'Петър Николаев', role: 'учител', subjects: ['Физика'] },
@@ -38,6 +38,19 @@ function UserManagement() {
         <h3>Текущи Потребители</h3>
         
         <div className="table-container">
+          <div className="table-search">
+            <input 
+              type="text" 
+              placeholder="Търсене по име..." 
+              className="search-input"
+            />
+            <select className="role-filter">
+              <option value="all">Всички роли</option>
+              <option value="ученик">Ученик</option>
+              <option value="учител">Учител</option>
+              <option value="администратор">Администратор</option>
+            </select>
+          </div>
           
           <table className="users-table">
             <thead>
@@ -101,7 +114,7 @@ function UserManagement() {
         >
           <option value="ученик">Ученик</option>
           <option value="учител">Учител</option>
-          <option value="admin">Администратор</option>
+          <option value="администратор">Администратор</option>
         </select>
         <input
           type="text"
