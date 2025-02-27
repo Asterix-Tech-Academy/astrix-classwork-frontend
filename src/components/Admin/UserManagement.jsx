@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { getUserProfile, updateUserProfile, deleteUser } from '../../backend/apiHelper';
+import { getUserProfile, updateUserProfile, deleteUser, getAllUsers, createUser } from '../../backend/apiHelper';
 
 function UserManagement() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
 
   const [newUser, setNewUser] = useState({
     name: '',
@@ -25,14 +29,14 @@ function UserManagement() {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    setTotalPages(Math.ceil(users.length / usersPerPage));
+  }, [users, usersPerPage]);
+
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/users');
-      if (!response.ok) {
-        throw new Error('Проблем при извличане на потребителите');
-      }
-      const data = await response.json();
+      const data = await getAllUsers();
       setUsers(data);
       setError(null);
     } catch (err) {
@@ -43,6 +47,24 @@ function UserManagement() {
     }
   };
 
+  const getCurrentUsers = () => {
+    const indexOfLastUser = currentPage * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    return users.slice(indexOfFirstUser, indexOfLastUser);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   const handleAddUser = async (e) => {
     e.preventDefault();
     if (newUser.password !== newUser.confirmPassword) {
@@ -50,40 +72,40 @@ function UserManagement() {
       return;
     }
     
+    const roleMapping = {
+      'ученик': 'student',
+      'учител': 'teacher',
+      'администратор': 'admin'
+    };
+  
+    // Prepare user data matching the format used in Register.jsx
     const userData = {
       firstName: newUser.firstName,
       lastName: newUser.lastName,
       email: newUser.email,
       username: newUser.username,
-      role: newUser.role,
+      role: roleMapping[newUser.role],
       password: newUser.password
     };
     
     if (newUser.role === 'ученик') {
-      userData.class = newUser.class;
+      userData.className = newUser.class;
     }
     
     if (newUser.role === 'учител') {
-      userData.subjects = [newUser.subject]; 
+      userData.subject = newUser.subject;
+      userData.isClassTeacher = newUser.isClassTeacher;
       if (newUser.isClassTeacher) {
         userData.classTeacherOf = newUser.classTeacherOf;
+        userData.className = newUser.classTeacherOf;
       }
     }
     
     try {
-      const response = await fetch('http://localhost:8080/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
+      // Use the createUser function from apiHelper instead of fetch
+      await createUser(userData);
       
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Проблем при създаване на потребител');
-      }
-      
+      // Reset form
       setNewUser({
         name: '',
         firstName: '',
@@ -99,6 +121,7 @@ function UserManagement() {
         confirmPassword: ''
       });
       
+      // Refresh users list
       fetchUsers();
       alert('Потребителят е създаден успешно!');
     } catch (err) {
@@ -127,6 +150,8 @@ function UserManagement() {
     }
   };
 
+  const currentUsers = getCurrentUsers();
+
   return (
     <div className="user-management">
       <h2 style={{"marginBottom": "20px"}}>Управление на Потребители</h2>
@@ -149,16 +174,18 @@ function UserManagement() {
                 </tr>
               </thead>
               <tbody>
-                {users.length > 0 ? (
-                  users.map(user => (
+                {currentUsers.length > 0 ? (
+                  currentUsers.map(user => (
                     <tr key={user.id}>
                       <td>{`${user.firstName} ${user.lastName}`}</td>
                       <td>
                         <span className={`role-badge ${user.role}`}>
-                          {user.role}
+                          {user.role === 'student' ? 'ученик' : 
+                           user.role === 'teacher' ? 'учител' : 
+                           user.role === 'admin' ? 'администратор' : user.role}
                         </span>
                       </td>
-                      <td>{user.class || user.subjects?.join(', ')}</td>
+                      <td>{user.className || user.subject}</td>
                       <td className="actions-cell">
                         <button 
                           className="edit-button"
@@ -184,11 +211,27 @@ function UserManagement() {
             </table>
           )}
           
-          <div className="table-pagination">
-            <button className="pagination-button">Предишна</button>
-            <span className="pagination-info">Страница 1 от 1</span>
-            <button className="pagination-button">Следваща</button>
-          </div>
+          {users.length > usersPerPage && (
+            <div className="table-pagination">
+              <button 
+                className="pagination-button" 
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+              >
+                Предишна
+              </button>
+              <span className="pagination-info">
+                Страница {currentPage} от {totalPages}
+              </span>
+              <button 
+                className="pagination-button" 
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                Следваща
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
