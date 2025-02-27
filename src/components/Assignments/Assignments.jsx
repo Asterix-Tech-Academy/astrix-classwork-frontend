@@ -11,8 +11,19 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
   const [activeAssignment, setActiveAssignment] = useState(null);
   const [truncatedAssignments, setTruncatedAssignments] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
+  const [userRole, setUserRole] = useState('student');
 
-  const role = getRoleName();
+  useEffect(() => {
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      try {
+        const user = JSON.parse(userString);
+        setUserRole(user.role || 'student');
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+      }
+    }
+  }, []);
 
   const assignments = useMemo(() => {
     return selectedClassroom?.assignments || [];
@@ -93,7 +104,7 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
       <br />
       <br />
       <div id="not-submitted">
-        {role === "ученик" && (
+        {userRole === "student" && (
           <h2>Непредадени</h2>
         )}
 
@@ -111,7 +122,7 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
           </div>
         </div>
       </div>
-      {role === "teacher" && (
+      {userRole === "teacher" && (
         <div id='addButton'>
           <Button 
             content="Добави задание" 
