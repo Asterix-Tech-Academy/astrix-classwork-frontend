@@ -17,7 +17,7 @@ function UserManagement() {
     email: '',
     username: '',
     role: 'ученик',
-    class: '',
+    className: '',
     subject: '',
     isClassTeacher: false,
     classTeacherOf: '',
@@ -78,7 +78,6 @@ function UserManagement() {
       'администратор': 'admin'
     };
   
-    // Prepare user data matching the format used in Register.jsx
     const userData = {
       firstName: newUser.firstName,
       lastName: newUser.lastName,
@@ -89,7 +88,7 @@ function UserManagement() {
     };
     
     if (newUser.role === 'ученик') {
-      userData.className = newUser.class;
+      userData.className = newUser.className;
     }
     
     if (newUser.role === 'учител') {
@@ -102,10 +101,9 @@ function UserManagement() {
     }
     
     try {
-      // Use the createUser function from apiHelper instead of fetch
+
       await createUser(userData);
       
-      // Reset form
       setNewUser({
         name: '',
         firstName: '',
@@ -113,7 +111,7 @@ function UserManagement() {
         email: '',
         username: '',
         role: 'ученик',
-        class: '',
+        className: '',
         subject: '',
         isClassTeacher: false,
         classTeacherOf: '',
@@ -121,7 +119,6 @@ function UserManagement() {
         confirmPassword: ''
       });
       
-      // Refresh users list
       fetchUsers();
       alert('Потребителят е създаден успешно!');
     } catch (err) {
@@ -302,8 +299,8 @@ function UserManagement() {
             <input
               type="text"
               placeholder="Въведете клас (напр., 10Б)"
-              value={newUser.class}
-              onChange={e => setNewUser({...newUser, class: e.target.value})}
+              value={newUser.className}
+              onChange={e => setNewUser({...newUser, className: e.target.value})}
               required
             />
           </div>
