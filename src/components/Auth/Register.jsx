@@ -12,7 +12,7 @@ const Register = () => {
     role: 'student',
     firstName: '',
     lastName: '',
-    qualification: '',
+    subject: '',
     isClassTeacher: false,
     classTeacherOf: '',
     className: ''
@@ -50,7 +50,7 @@ const Register = () => {
       };
 
       if (formData.role === 'teacher') { 
-        userData.qualification = formData.qualification;
+        userData.subject = formData.subject;
         userData.isClassTeacher = formData.isClassTeacher;
         if (formData.isClassTeacher) {
           userData.classTeacherOf = formData.classTeacherOf;
@@ -169,10 +169,10 @@ const Register = () => {
               <label>Предмет:</label>
               <input
                 type="text"
-                name="qualification"
-                value={formData.qualification}
+                name="subject"
+                value={formData.subject}
                 onChange={handleChange}
-                placeholder="Въведете вашата квалификация"
+                placeholder="Въведете вашия предмет"
                 required={formData.role === 'teacher'}
               />
             </div>
