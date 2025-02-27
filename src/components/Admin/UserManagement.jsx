@@ -17,7 +17,7 @@ function UserManagement() {
     email: '',
     username: '',
     role: 'ученик',
-    className: '',
+    classId: '', 
     subject: '',
     isClassTeacher: false,
     classTeacherOf: '',
@@ -88,7 +88,7 @@ function UserManagement() {
     };
     
     if (newUser.role === 'ученик') {
-      userData.className = newUser.className;
+      userData.classId = newUser.classId; 
     }
     
     if (newUser.role === 'учител') {
@@ -96,7 +96,7 @@ function UserManagement() {
       userData.isClassTeacher = newUser.isClassTeacher;
       if (newUser.isClassTeacher) {
         userData.classTeacherOf = newUser.classTeacherOf;
-        userData.className = newUser.classTeacherOf;
+        userData.classId = newUser.classTeacherOf;  
       }
     }
     
@@ -111,7 +111,7 @@ function UserManagement() {
         email: '',
         username: '',
         role: 'ученик',
-        className: '',
+        classId: '', 
         subject: '',
         isClassTeacher: false,
         classTeacherOf: '',
@@ -182,7 +182,7 @@ function UserManagement() {
                            user.role === 'admin' ? 'администратор' : user.role}
                         </span>
                       </td>
-                      <td>{user.className || user.subject}</td>
+                      <td>{user.classId || user.subject}</td>
                       <td className="actions-cell">
                         <button 
                           className="edit-button"
@@ -299,8 +299,8 @@ function UserManagement() {
             <input
               type="text"
               placeholder="Въведете клас (напр., 10Б)"
-              value={newUser.className}
-              onChange={e => setNewUser({...newUser, className: e.target.value})}
+              value={newUser.classId}
+              onChange={e => setNewUser({...newUser, classId: e.target.value})}
               required
             />
           </div>
