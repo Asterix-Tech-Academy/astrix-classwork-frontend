@@ -28,7 +28,6 @@ function UserManagement() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      // We need to add this function to apiHelper.js
       const response = await fetch('http://localhost:8080/users');
       if (!response.ok) {
         throw new Error('Проблем при извличане на потребителите');
@@ -51,7 +50,6 @@ function UserManagement() {
       return;
     }
     
-    // Prepare user data to send to API
     const userData = {
       firstName: newUser.firstName,
       lastName: newUser.lastName,
@@ -61,20 +59,18 @@ function UserManagement() {
       password: newUser.password
     };
     
-    // Add role-specific fields
     if (newUser.role === 'ученик') {
       userData.class = newUser.class;
     }
     
     if (newUser.role === 'учител') {
-      userData.subjects = [newUser.subject]; // Assuming subjects is an array
+      userData.subjects = [newUser.subject]; 
       if (newUser.isClassTeacher) {
         userData.classTeacherOf = newUser.classTeacherOf;
       }
     }
     
     try {
-      // We need to add this function to apiHelper.js
       const response = await fetch('http://localhost:8080/users', {
         method: 'POST',
         headers: {
@@ -88,7 +84,6 @@ function UserManagement() {
         throw new Error(error.message || 'Проблем при създаване на потребител');
       }
       
-      // Clear form and refresh users list
       setNewUser({
         name: '',
         firstName: '',
@@ -113,10 +108,8 @@ function UserManagement() {
 
   const handleEditUser = async (id) => {
     try {
-      // Redirect to edit user page or open modal with user data
       const user = await getUserProfile(id);
       console.log('User to edit:', user);
-      // Implement edit user functionality
     } catch (err) {
       alert('Грешка при зареждане на данните за потребител: ' + err.message);
     }
