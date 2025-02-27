@@ -6,6 +6,7 @@ import './Auth.css';
 const Login = () => {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('student');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -19,7 +20,8 @@ const Login = () => {
       
       const credentials = {
         identifier,
-        password
+        password,
+        role
       };
 
       const response = await login(credentials);
@@ -50,6 +52,21 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="auth-form">
         <h2>Вход</h2>
         {error && <div className="error-message">{error}</div>}
+        
+        <div className="form-group">
+          <label htmlFor="role-select">Влизане като:</label>
+          <select 
+            id="role-select"
+            className="role-dropdown"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+          >
+            <option value="student">Ученик</option>
+            <option value="teacher">Учител</option>
+            <option value="admin">Администратор</option>
+          </select>
+        </div>
+        
         <div className="form-group">
           <label>Имейл или потребителско име:</label>
           <input
