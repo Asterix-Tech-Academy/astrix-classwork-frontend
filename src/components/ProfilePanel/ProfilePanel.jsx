@@ -1,26 +1,54 @@
+import { useState, useEffect } from 'react';
 import './ProfilePanel.css';
-import profilePicture from '../../../public/profile.png';
+import defaultProfilePicture from '../../../public/profile.png';
 
 function ProfilePanel() {
-  const name = "Преслав Колев";
-  const type = getRole();
-  const pic = profilePicture;
+  const [userData, setUserData] = useState({
+    name: "",
+    role: "",
+    profilePicture: defaultProfilePicture
+  });
+  
+  useEffect(() => {
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      try {
+        const user = JSON.parse(userString);
+        setUserData({
+          name: user.name || user.username || "Потребител",
+          role: getRoleName(user.role),
+          profilePicture: user.profilePicture || defaultProfilePicture
+        });
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+      }
+    }
+  }, []);
   
   return (
     <div id="profile" className="panel">
       <div id='profile-panel-left'>
-        <img src={pic} alt={name + "'s profile"} />
-        <p>{name}</p>
+        <img src={userData.profilePicture} alt={userData.name + "'s profile"} />
+        <p>{userData.name}</p>
       </div>
       <div id='profile-panel-right'>
-        <p>{type}</p>
+        <p>{userData.role}</p>
       </div>
     </div>
   );
 }
 
-export function getRole() {
-  return "учител"
+export function getRoleName(role) {
+  switch (role) {
+    case 'teacher':
+      return "учител";
+    case 'admin':
+      return "администратор";
+    case 'student':
+      return "ученик";
+    default:
+      return "ученик";
+  }
 }
 
 export default ProfilePanel;
