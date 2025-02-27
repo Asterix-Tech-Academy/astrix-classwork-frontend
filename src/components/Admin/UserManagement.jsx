@@ -36,39 +36,53 @@ function UserManagement() {
       
       <div className="user-list panel">
         <h3>Текущи Потребители</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Име</th>
-              <th>Роля</th>
-              <th>Клас/Предмети</th>
-              <th>Действия</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map(user => (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.role}</td>
-                <td>{user.class || user.subjects?.join(', ')}</td>
-                <td>
-                  <button 
-                    className="edit-button"
-                    onClick={() => console.log('Редактиране:', user.id)}
-                  >
-                    Редактиране
-                  </button>
-                  <button 
-                    className="delete-button"
-                    onClick={() => console.log('Изтриване:', user.id)}
-                  >
-                    Изтриване
-                  </button>
-                </td>
+        
+        <div className="table-container">
+          
+          <table className="users-table">
+            <thead>
+              <tr>
+                <th>Име</th>
+                <th>Роля</th>
+                <th>Клас/Предмети</th>
+                <th>Действия</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {users.map(user => (
+                <tr key={user.id}>
+                  <td>{user.name}</td>
+                  <td>
+                    <span className={`role-badge ${user.role}`}>
+                      {user.role}
+                    </span>
+                  </td>
+                  <td>{user.class || user.subjects?.join(', ')}</td>
+                  <td className="actions-cell">
+                    <button 
+                      className="edit-button"
+                      onClick={() => console.log('Редактиране:', user.id)}
+                    >
+                      <i className="icon-edit"></i> Редактиране
+                    </button>
+                    <button 
+                      className="delete-button"
+                      onClick={() => console.log('Изтриване:', user.id)}
+                    >
+                      <i className="icon-trash"></i> Изтриване
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          
+          <div className="table-pagination">
+            <button className="pagination-button">Предишна</button>
+            <span className="pagination-info">Страница 1 от 1</span>
+            <button className="pagination-button">Следваща</button>
+          </div>
+        </div>
       </div>
 
       <form onSubmit={handleAddUser} className="add-user-form panel">
