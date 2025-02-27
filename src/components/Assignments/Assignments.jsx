@@ -14,16 +14,13 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
 
   const role = getRoleName();
 
-  // Memoize the assignments array
   const assignments = useMemo(() => {
     return selectedClassroom?.assignments || [];
   }, [selectedClassroom?.assignments]);
 
   useEffect(() => {
-    // Update truncated assignments when assignments change
     updateTruncateAssignments(assignments);
 
-    // Reset active and selected assignments
     setActiveAssignment(null);
     setSelectedAssignment(null);
   }, [assignments, setSelectedAssignment]);
@@ -45,7 +42,7 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
     if (assignmentsList) {
       assignmentsList.scrollTop = assignmentsList.scrollHeight;
     }
-  }, [truncatedAssignments]); // This will run whenever assignments are updated
+  }, [truncatedAssignments]);
 
   const updateTruncateAssignments = (assignments) => {
     const truncateLength = window.innerWidth <= 768 ? '9cnt' : '2.2cnt';
@@ -66,7 +63,7 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
 
   const handleAddAssignment = () => {
     const newAssignment = {
-      id: Date.now(), // temporary ID
+      id: Date.now(),
       title: "Ново задание",
       description: "",
       dueDate: "",
@@ -75,14 +72,11 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
       submissions: []
     };
 
-    // Add to assignments array
     const updatedAssignments = [...assignments, newAssignment];
     selectedClassroom.assignments = updatedAssignments;
 
-    // Update truncated assignments
     updateTruncateAssignments(updatedAssignments);
     
-    // Select the new assignment
     setActiveAssignment(newAssignment.id);
     setSelectedAssignment(newAssignment);
   };
@@ -117,7 +111,7 @@ function Assignments({ selectedClassroom, setSelectedAssignment }) {
           </div>
         </div>
       </div>
-      {role === "учител" && (
+      {role === "teacher" && (
         <div id='addButton'>
           <Button 
             content="Добави задание" 
