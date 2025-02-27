@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getUserProfile, updateUserProfile, deleteUser, getAllUsers, createUser } from '../../backend/apiHelper';
+import { getUserProfile, updateUserProfile, deleteUser, getAllUsers, register } from '../../backend/apiHelper';
 
 function UserManagement() {
   const [users, setUsers] = useState([]);
@@ -17,12 +17,12 @@ function UserManagement() {
     email: '',
     username: '',
     role: 'ученик',
-    classId: '', 
+    className: '',
     subject: '',
     isClassTeacher: false,
     classTeacherOf: '',
-    password_hash: '',
-    confirmPassword_hash: ''
+    password: '',
+    confirmPassword: ''
   });
 
   useEffect(() => {
@@ -67,7 +67,7 @@ function UserManagement() {
 
   const handleAddUser = async (e) => {
     e.preventDefault();
-    if (newUser.password_hash !== newUser.confirmPassword_hash) {
+    if (newUser.password !== newUser.confirmPassword) {
       alert('Паролите не съвпадат!');
       return;
     }
@@ -84,11 +84,11 @@ function UserManagement() {
       email: newUser.email,
       username: newUser.username,
       role: roleMapping[newUser.role],
-      password_hash: newUser.password_hash
+      password: newUser.password
     };
     
     if (newUser.role === 'ученик') {
-      userData.classId = newUser.classId; 
+      userData.className = newUser.className;
     }
     
     if (newUser.role === 'учител') {
@@ -96,13 +96,13 @@ function UserManagement() {
       userData.isClassTeacher = newUser.isClassTeacher;
       if (newUser.isClassTeacher) {
         userData.classTeacherOf = newUser.classTeacherOf;
-        userData.classId = newUser.classTeacherOf;  
+        userData.className = newUser.classTeacherOf;
       }
     }
     
     try {
 
-      await createUser(userData);
+      await register(userData);
       
       setNewUser({
         name: '',
@@ -111,12 +111,12 @@ function UserManagement() {
         email: '',
         username: '',
         role: 'ученик',
-        classId: '', 
+        className: '',
         subject: '',
         isClassTeacher: false,
         classTeacherOf: '',
-        password_hash: '',
-        confirmPassword_hash: ''
+        password: '',
+        confirmPassword: ''
       });
       
       fetchUsers();
@@ -182,7 +182,7 @@ function UserManagement() {
                            user.role === 'admin' ? 'администратор' : user.role}
                         </span>
                       </td>
-                      <td>{user.classId || user.subject}</td>
+                      <td>{user.className || user.subject}</td>
                       <td className="actions-cell">
                         <button 
                           className="edit-button"
@@ -299,8 +299,8 @@ function UserManagement() {
             <input
               type="text"
               placeholder="Въведете клас (напр., 10Б)"
-              value={newUser.classId}
-              onChange={e => setNewUser({...newUser, classId: e.target.value})}
+              value={newUser.className}
+              onChange={e => setNewUser({...newUser, className: e.target.value})}
               required
             />
           </div>
@@ -355,10 +355,10 @@ function UserManagement() {
         <div className="form-group">
           <label>Парола:</label>
           <input
-            type="password_hash"
+            type="password"
             placeholder="Парола"
-            value={newUser.password_hash}
-            onChange={e => setNewUser({...newUser, password_hash: e.target.value})}
+            value={newUser.password}
+            onChange={e => setNewUser({...newUser, password: e.target.value})}
             required
           />
         </div>
@@ -366,10 +366,10 @@ function UserManagement() {
         <div className="form-group">
           <label>Потвърди парола:</label>
           <input
-            type="password_hash"
+            type="password"
             placeholder="Потвърди парола"
-            value={newUser.confirmPassword_hash}
-            onChange={e => setNewUser({...newUser, confirmPassword_hash: e.target.value})}
+            value={newUser.confirmPassword}
+            onChange={e => setNewUser({...newUser, confirmPassword: e.target.value})}
             required
           />
         </div>
