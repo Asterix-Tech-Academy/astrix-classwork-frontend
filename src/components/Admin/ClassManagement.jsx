@@ -7,14 +7,18 @@ function ClassManagement() {
       name: 'Английски език',
       teacher: 'Пенка Пенкова',
       students: ['Преслав Колев', 'Иван Иванов']
+    },
+    {
+      id: 2,
+      name: 'Немски език',
+      teacher: 'Киро Киров',
+      students: ['Йово Михов', 'Петя Петрова', 'Мария Маринова', 'Иван Иванов', 'Георги Георгиев', 'Иван Георгиев']
     }
   ]);
 
   return (
     <div className="class-management">
-      <h2>Управление на Класове</h2>
-      
-      <div className="class-list panel">
+      <h2 style={{"margin-bottom": "20px"}}>Управление на Класове</h2>     
         {classes.map(cls => (
           <div key={cls.id} className="class-card">
             <h3>{cls.name}</h3>
@@ -32,7 +36,6 @@ function ClassManagement() {
             </div>
           </div>
         ))}
-      </div>
     </div>
   );
 }

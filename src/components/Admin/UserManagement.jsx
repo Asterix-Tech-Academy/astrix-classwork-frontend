@@ -4,6 +4,13 @@ function UserManagement() {
   const [users] = useState([
     { id: 1, name: 'Преслав Колев', role: 'ученик', class: '11A' },
     { id: 2, name: 'Пенка Пенкова', role: 'учител', subjects: ['Английски'] },
+    { id: 3, name: 'Ивана Петрова', role: 'ученик', class: '10Б' },
+    { id: 4,name: 'Мария Димитрова', role: 'учител', subjects: ['Математика', 'Информатика'] },
+    { id: 5, name: 'Стоян Николов', role: 'ученик', class: '12В' },
+    { id: 6, name: 'Антон Стоянов', role: 'admin', subjects: [] },
+    { id: 7, name: 'Лилия Тодорова', role: 'учител', subjects: ['История', 'География'] },
+    { id: 8, name: 'Елена Василева', role: 'ученик', class: '10A' },
+    { id: 9, name: 'Петър Николаев', role: 'учител', subjects: ['Физика'] },
   ]);
 
   const [newUser, setNewUser] = useState({
@@ -25,7 +32,7 @@ function UserManagement() {
 
   return (
     <div className="user-management">
-      <h2>Управление на Потребители</h2>
+      <h2 style={{"margin-bottom": "20px"}}>Управление на Потребители</h2>
       
       <div className="user-list panel">
         <h3>Текущи Потребители</h3>

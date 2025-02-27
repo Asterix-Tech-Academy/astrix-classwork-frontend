@@ -23,24 +23,23 @@ const Login = () => {
       };
 
       const response = await login(credentials);
-      console.log('Login successful:', response);
+      console.log('Успешно влизане:', response);
     
       localStorage.setItem('user', JSON.stringify(response));
       
-      // Navigate based on the role returned from the server
       switch(response.role) {
         case 'admin':
           navigate('/admin');
           break;
         case 'teacher':
-          navigate('/dashboard');
+          navigate('/');
           break;
         default:
           navigate('/');
       }
     } catch (err) {
-      setError(err.message || 'Login failed. Please check your credentials.');
-      console.error('Login error:', err);
+      setError(err.message || 'Неуспешно влизане. Моля, проверете вашите данни.');
+      console.error('Грешка при влизане:', err);
     } finally {
       setIsLoading(false);
     }
@@ -49,10 +48,10 @@ const Login = () => {
   return (
     <div className="auth-container">
       <form onSubmit={handleSubmit} className="auth-form">
-        <h2>Login</h2>
+        <h2>Вход</h2>
         {error && <div className="error-message">{error}</div>}
         <div className="form-group">
-          <label>Email or Username:</label>
+          <label>Имейл или потребителско име:</label>
           <input
             type="text"
             value={identifier}
@@ -61,7 +60,7 @@ const Login = () => {
           />
         </div>
         <div className="form-group">
-          <label>Password:</label>
+          <label>Парола:</label>
           <input
             type="password"
             value={password}
@@ -70,7 +69,7 @@ const Login = () => {
           />
         </div>
         <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Logging in...' : 'Login'}
+          {isLoading ? 'Влизане...' : 'Вход'}
         </button>
       </form>
     </div>

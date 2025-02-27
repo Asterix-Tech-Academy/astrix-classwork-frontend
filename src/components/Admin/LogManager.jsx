@@ -51,7 +51,7 @@ function LogManager() {
 
   return (
     <div className="log-management">
-      <h2>Системен Журнал</h2>
+      <h2 style={{"margin-bottom": "20px"}}>Системен Журнал</h2>
       
       <div className="log-filters panel">
         <button 
